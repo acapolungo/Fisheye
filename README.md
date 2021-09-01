@@ -28,13 +28,13 @@
 3. Bouton de navigation précédent et suivant.
 4. Les touches du clavier déclenchent la navigation.
 
-### Gestion d'une modale formulaire personnalisée
+### Gestion d'une modale de formulaire personnalisé
 1. la modale devra s'afficher par dessus le reste
 2. Ajouter la fonctionnalité au bouton (x), fermer le formulaire.
 3. Gestion de formulaire
 4. Renvois des logs envoyés dans le formulaire
 
-### Plateforme resposive et conviviale
+### Plateforme responsive et conviviale
 1. HTMl sémantique
 2. Elléments avec attribut aria
 3. Test à faire sur Achecker avec aucune "know issue" (wcag)
