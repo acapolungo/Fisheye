@@ -1,0 +1,17 @@
+@use "sass:math";
+$base-font-size: 16px;
+
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+      @return math.div($number, $number * 0 + 1)
+    }
+  
+    @return $number;
+  }
+
+// Unité en rem, unité de base 16px MAIS
+// pour diviser on enleve l'unité px à la division > strip-unit($base) puis on la multiplie avec 1 rem
+// enfin on retourne la valeur en rem
+@function rem($size, $base:$base-font-size) {
+    @return math.div(1rem * $size, strip-unit($base))
+}

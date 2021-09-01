@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2fbf37b732.js" crossorigin="anonymous"></script>
+    <title>Fisheye</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__banner">
+            <a href="../index.html"><img src="../images/Fisheye Logo.svg" alt="Logo Fisheye"></a>
+        </div>
+    </header>
+
+    <main class="contact">
+        <section class="contact__container">
+            <div class="contact__infos">
+                <h1 class="contact__name">Mimi Keel</h1>
+                <div class="contact__location">London, UK</div>
+                <div class="contact__citation">Voir le beau dans le quotidien</div>
+                <div class="contact__category">
+                    <a href="#" class="contact__tags">Portrait<span
+                            class="contact__sr-only contact__sr-only--disable">Portrait</span></a>
+                    <a href="#" class="contact__tags">Events<span
+                            class="contact__sr-only contact__sr-only--disable">Events</span></a>
+                    <a href="#" class="contact__tags">Travel<span
+                            class="contact__sr-only contact__sr-only--disable">Travel</span></a>
+                    <a href="#" class="contact__tags">Animals<span
+                            class="contact__sr-only contact__sr-only--disable">Animals</span></a>
+                </div>
+            </div>
+            <button class="contact__btn">Contactez-moi</button>
+            <a href="#">
+                <div class="contact__profile">
+                    <img src="../images/PhotographersID/MimiKeel.jpg" alt="Portrait de Ellie-Rose">
+                </div>
+            </a>
+        </section>
+        
+        
+        <section class="select-wrapper">
+            <label for="select__tag">Trier par:</label>
+            <div class="select">
+                <div class="select__trigger"><span>Popularité</span>
+                    <div class="arrow"></div>
+                </div>
+                <div class="select__options">
+                    <span class="custom-option selected" data-value="tesla">Popularité</span>
+                    <span class="custom-option" data-value="volvo">Date</span>
+                    <span class="custom-option" data-value="mercedes">Titre</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="gallerycontainer">
+            <section class="gallery">
+                <a href="#">
+                    <div class="gallery__photo"><img src="../images/Mimi/Animals_Rainbow.jpg" alt="oiseau arc en ciel">
+                    </div>
+                </a>
+                <div class="gallery__content">
+                    <p class="gallery_txt">Arc-en-Ciel</p>
+                    <div class="gallery__like">
+                        <p class="gallery__count">12</p>
+                        <span class="gallery__heart"><i class="fas fa-heart"></i></span>
+                    </div>
+                </div>
+            </section>
+            <section class="gallery">
+                <a href="#">
+                    <div class="gallery__photo"><img src="../images/Mimi/Travel_Lonesome.jpg" alt="paysage solitaire">
+                    </div>
+                </a>
+                <div class="gallery__content">
+                    <p class="gallery_txt">Solitude</p>
+                    <div class="gallery__like">
+                        <p class="gallery__count">12</p>
+                        <span class="gallery__heart"><i class="fas fa-heart"></i></span>
+                    </div>
+                </div>
+            </section>
+            <section class="gallery">
+                <a href="#">
+                    <div class="gallery__photo"><img src="../images/Mimi/Event_SeasideWedding.jpg"
+                            alt="mariager à la mer"></div>
+                </a>
+                <div class="gallery__content">
+                    <p class="gallery_txt">Mariage à la mer</p>
+                    <div class="gallery__like">
+                        <p class="gallery__count">12</p>
+                        <span class="gallery__heart"><i class="fas fa-heart"></i></span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

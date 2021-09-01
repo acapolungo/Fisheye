@@ -1,0 +1,35 @@
+.gallerycontainer {
+    margin-top: rem(20);
+}
+
+.gallery {
+    min-width: rem(350);
+    margin-bottom: rem(10);
+    &__photo {
+        img {
+        border-radius: rem(5);
+        width: 100%;
+        height: rem(190);
+        object-fit: cover;
+        object-position: center 15%;
+        }
+    }
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: rem(28);
+        font-weight: 400;
+        font-size: rem(14);
+        color: $color-primary;
+    }
+    &__like {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__count {
+        padding-right: rem(5);
+        font-weight: 500;
+        font-size: rem(14);
+    }
+}

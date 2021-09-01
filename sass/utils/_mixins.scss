@@ -1,0 +1,20 @@
+//Device = Desktops
+@mixin desktop {
+    @media (min-width: 1281px) {
+        @content;
+    }
+}
+
+//Device = Laptops, Desktops
+@mixin laptops {
+    @media (min-width: 1025px) {
+        @content;
+    }
+}
+
+//Device = Tablets, Ipads (portrait)
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}

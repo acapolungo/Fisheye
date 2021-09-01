@@ -1,0 +1,112 @@
+.home {
+    width: 100%;
+    max-width: 1440px;
+    min-width: rem(320);
+    height: 100vh;
+    margin: 0 auto;
+    padding: rem(20);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: rem(30);
+    @include tablet {
+        padding: rem(100) rem(100) rem(87);
+    }
+    @include desktop {
+        justify-content: space-between;
+    }
+    &__title {
+        position: absolute;
+        right: rem(20);
+        top: rem(50);
+        font-size: rem(14);
+        color: $color-primary;
+        font-weight: 400;
+        @include tablet {
+            font-size: rem(36);
+            top: rem(40)
+        }
+    }
+    &__photographers {
+        width: rem(310);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    &__profile {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        img {
+        border-radius: 50%;
+        width: rem(200);
+        height: rem(200);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        object-fit: cover;
+        }  
+    }
+    &__name {
+        font-size: rem(36);
+        color: $color-secondary;
+        font-weight: 400;
+        margin-top: rem(20);
+    }
+    &__info {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    &__location {
+        font-size: rem(13);
+        color: $color-primary;
+        padding-bottom: rem(3);
+    }
+    &__citation{
+        font-size: rem(10);
+        padding-bottom: rem(3);
+    }
+    &__price {
+        font-size: rem(9);
+        color: $color-secondary-grey;
+        padding-bottom: rem(6);
+    }
+    &__category {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.gallery {
+    margin-bottom: rem(10);
+    &__photo {
+        img {
+        border-radius: rem(5);
+        width: 100%;
+        height: rem(190);
+        object-fit: cover;
+        object-position: center 15%;
+        }
+    }
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: rem(28);
+        font-weight: 400;
+        font-size: rem(14);
+        color: $color-primary;
+    }
+    &__like {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__count {
+        padding-right: rem(5);
+        font-weight: 500;
+        font-size: rem(14);
+    }
+}
