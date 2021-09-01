@@ -4,7 +4,8 @@
 
 ### Gestion des tags
 1. Cliquer sur un tag dans la barre de validation pour filtrer les photographes qui correspondent au tag.
-2. Cliquer sur la vignete du photographe pour aller vers sa page personnalisée.
+2. Cliquer sur la vignette du photographe pour aller vers sa page personnalisée.
+3. Bouton "Passer au contenu" apparait quand l'utilisateur descend dans la page, il redirige sur le contenu principal.
 
 ## Page du photographe
 
@@ -35,7 +36,7 @@
 4. Renvois des logs envoyés dans le formulaire
 
 ### Plateforme responsive et conviviale
-1. HTMl sémantique
+1. HTML sémantique
 2. Elléments avec attribut aria
 3. Test à faire sur Achecker avec aucune "know issue" (wcag)
 4. Gestion des évènements en keyboardEvent.key ou keyboardEvent.code
