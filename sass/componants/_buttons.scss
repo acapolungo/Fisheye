@@ -1,4 +1,4 @@
-.header__tags, .home__tags, .home__sr-only {
+.header__tags, .home__tags {
     &::before {
         content: '#';
     }
@@ -33,16 +33,12 @@
     }
 }
 
-.home__sr-only, .header__sr-only, .contact__sr-only {
-    &--disable {
-        display: none;
-    }
-}
 a {
     &.header__mainlink {
         color: inherit;
     }
 }
+
 .contact__btn {
     color: #fff;
     border: none;

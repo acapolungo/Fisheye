@@ -6,8 +6,8 @@
 }
 
 //Device = Laptops, Desktops
-@mixin laptops {
-    @media (min-width: 1025px) {
+@mixin laptop {
+    @media (min-width: 1024px) {
         @content;
     }
 }
