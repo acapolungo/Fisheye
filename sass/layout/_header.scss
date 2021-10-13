@@ -63,12 +63,28 @@
     &__mainlink {
         text-align: center;
         display: none;
+        position: relative;
         background-color: $color-secondary;
         font-weight: 700;
         padding: rem(3) rem(20);
         border-radius: rem(5);
-        @include tablet {
+        overflow: hidden;
+        &::before {
+            content :"";
+            color: #fff;
+            position: absolute;
+            left: 0;
+        }
+        @include fadeIn;
+        &--reveal {
             display: block;
+            position: fixed;
+            top: rem(50);
+            z-index: 100;
+            animation: fadeIn 0.3s;
+            &:hover {
+                color: #fff;
+            }
         }
     }
     &__title {

@@ -18,3 +18,36 @@
         @content;
     }
 }
+
+@mixin fadeIn {
+    @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }    
+}
+
+// color opacity
+@mixin background-opacity($color, $opacity) {
+    background: $color;  /*Fallback */
+    background: rgba($color, $opacity);
+}
+
+// modal animation
+@mixin modal {
+    @keyframes modalopen {
+        from {
+          opacity: 0;
+          transform: translateY(-150px);
+        }
+        to {
+          opacity: 1;
+        }
+      }
+}
+
+@mixin inputAndTextarea {
+    font-family : inherit;
+    font-size: rem(30);
+    color: lighten($color-label, 20%);
+    padding-left: rem(10);
+}

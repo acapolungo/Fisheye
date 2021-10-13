@@ -1,0 +1,109 @@
+.selectcontainer {
+    width: 100%;
+    max-width: rem(1440);
+    min-width: rem(320);
+    padding: 0 rem(20);
+    margin: 0 auto;
+    position: relative;
+    user-select: none;
+    @include tablet {
+        padding: 0 rem(50);
+    }
+    @include desktop {
+        padding: 0 rem(100);
+    }
+}
+
+.select {
+    width: rem(200);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    margin-top: rem(10);
+    &__trigger {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 22px;
+        font-size: rem(22);
+        font-weight: 300;
+        color: #fff;
+        height: 60px;
+        line-height: 60px;
+        background: $color-primary;
+        cursor: pointer;
+        border: none;
+    }
+    &__options {
+        position: absolute;
+        display: block;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border: none;
+        border-top: 0;
+        background: $color-primary;
+        transition: all 0.5s;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 2;
+    }
+    &.open .select__options {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+    }
+    &__opt {
+        position: relative;
+        display: block;
+        padding: 0 22px 0 22px;
+        font-size: rem(20);
+        font-weight: 300;
+        color: #fff;
+        line-height: 60px;
+        cursor: pointer;
+        transition: all 0.5s;
+        &:hover {
+            cursor: pointer;
+            background-color:lighten($color-primary, 25%);
+        }
+        &.selected {
+            color: $color-primary;
+            background-color: lighten($color-primary, 40%);
+        }
+    }
+    &__arrow {
+        position: relative;
+        height: 15px;
+        width: 15px;
+        &::before, &::after {
+            content: "";
+            position: absolute;
+            bottom: 0px;
+            width: 0.15rem;
+            height: 100%;
+            transition: all 0.5s;
+        }
+        &::before {
+            left: -5px;
+            transform: rotate(45deg);
+            background-color: #fff;
+        }
+        &::after {
+            left: 5px;
+            transform: rotate(-45deg);
+            background-color: #fff;
+        }
+        .open &::before {
+            left: -5px;
+            transform: rotate(-45deg);
+        }
+        .open &::after {
+            left: 5px;
+            transform: rotate(45deg);
+        }
+    }
+}

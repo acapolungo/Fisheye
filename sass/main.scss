@@ -6,10 +6,12 @@
 @import "./base/typography";
 
 @import "./componants/buttons";
+@import "./componants/customselect";
 
 @import "./layout/header";
-@import "./layout/footer";
 
 @import "./pages/home";
 @import "./pages/photographer";
 @import "./pages/gallery";
+@import "./pages/modal";
+@import "./pages/lightbox";
