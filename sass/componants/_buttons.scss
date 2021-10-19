@@ -69,3 +69,42 @@ a {
         transform: initial;
     }
 }
+
+
+.lightbox__btnclose {
+    height: rem(20);
+    width: rem(20);
+    position: absolute;
+    display: inline-block;
+    right: rem(65);
+    cursor: pointer;
+
+    &:before, &:after  {
+        width: rem(40);
+        height: rem(8);
+        content: '';
+        position: absolute;
+        transform: rotate(45deg);
+        top: 50%;
+        left: 50%;
+        display: block;
+        background-color: $color-primary;
+        transition: all 0.25s ease-out;
+    }
+    &:after {
+        transform: rotate(-45deg);
+    }
+
+    &:hover {
+        &:before {
+            height: rem(5);
+            transform: rotate(135deg);
+            background: $color-secondary;
+        }
+        &:after {
+            height: rem(5);
+            transform: rotate(-135deg);
+            background: $color-secondary;
+        }
+    }
+}

@@ -69,11 +69,10 @@ function displayUniqTags(allPhotographers) {
     headerTags.forEach(tag => tag.addEventListener('click', (e) => showPhotographersTagged(e, allPhotographers)));
 }
 
-/* ============================= Gestion du style des boutons ============================= */
+/* ============================= Gestion du style des tags ============================= */
 const selectedTagsSet = new Set();
 function showPhotographersTagged(e, allPhotographers) {
     // Au clic ajoute la classe active si elle n'existe pas
-    // e.target.classList.contains('active') ? e.target.classList.remove('active') : e.target.classList.add('active');
     e.target.classList.toggle('active')
 
     // stock dans un set les elements cliqués
@@ -86,7 +85,6 @@ function showPhotographersTagged(e, allPhotographers) {
     }
     // on transforme le set en tableau
     const selectedTagsArray = [...selectedTagsSet];
-    //console.log(selectedTagsArray)
 
     // on vide le tableau dynamicPhotographs et on retourne les photographes qui possèdent un tag correspondant
     const taggedPhotographers = allPhotographers.filter(photograph => photograph.hasTags(selectedTagsArray));

@@ -22,7 +22,7 @@
 .gallery {
     width: rem(350);
     margin-bottom: rem(10);
-    &__photo {
+    &__photo, &__video {
         img {
         border-radius: rem(5);
         width: 100%;
@@ -61,5 +61,10 @@
         padding-right: rem(5);
         font-weight: 500;
         font-size: rem(14);
+    }
+    &__heart {
+        &--activ {
+            color: $color-secondary;
+        }
     }
 }

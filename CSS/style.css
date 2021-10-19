@@ -105,6 +105,40 @@ a.header__mainlink {
   }
 }
 
+.lightbox__btnclose {
+  height: 1.25rem;
+  width: 1.25rem;
+  position: absolute;
+  display: inline-block;
+  right: 4.0625rem;
+  cursor: pointer;
+}
+.lightbox__btnclose:before, .lightbox__btnclose:after {
+  width: 2.5rem;
+  height: 0.5rem;
+  content: "";
+  position: absolute;
+  transform: rotate(45deg);
+  top: 50%;
+  left: 50%;
+  display: block;
+  background-color: #901C1C;
+  transition: all 0.25s ease-out;
+}
+.lightbox__btnclose:after {
+  transform: rotate(-45deg);
+}
+.lightbox__btnclose:hover:before {
+  height: 0.3125rem;
+  transform: rotate(135deg);
+  background: #D3573C;
+}
+.lightbox__btnclose:hover:after {
+  height: 0.3125rem;
+  transform: rotate(-135deg);
+  background: #D3573C;
+}
+
 .selectcontainer {
   width: 100%;
   max-width: 90rem;
@@ -113,6 +147,11 @@ a.header__mainlink {
   margin: 0 auto;
   position: relative;
   user-select: none;
+  display: flex;
+  align-items: center;
+  font-size: 1.125rem;
+  margin-top: 1.25rem;
+  font-weight: 700;
 }
 @media (min-width: 768px) {
   .selectcontainer {
@@ -126,12 +165,12 @@ a.header__mainlink {
 }
 
 .select {
-  width: 12.5rem;
+  width: 11.25rem;
   position: relative;
   display: flex;
   flex-direction: column;
   border: none;
-  margin-top: 0.625rem;
+  margin-left: 1.25rem;
 }
 .select__trigger {
   position: relative;
@@ -139,14 +178,13 @@ a.header__mainlink {
   align-items: center;
   justify-content: space-between;
   padding: 0 22px;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   font-weight: 300;
   color: #fff;
-  height: 60px;
-  line-height: 60px;
+  height: 3.75rem;
   background: #901C1C;
   cursor: pointer;
-  border: none;
+  border-radius: 0.3125rem;
 }
 .select__options {
   position: absolute;
@@ -154,7 +192,7 @@ a.header__mainlink {
   top: 100%;
   left: 0;
   right: 0;
-  border: none;
+  border-radius: 0.3125rem;
   border-top: 0;
   background: #901C1C;
   transition: all 0.5s;
@@ -586,7 +624,7 @@ a.header__mainlink {
   width: 21.875rem;
   margin-bottom: 0.625rem;
 }
-.gallery__photo img {
+.gallery__photo img, .gallery__video img {
   border-radius: 0.3125rem;
   width: 100%;
   height: 11.875rem;
@@ -594,18 +632,18 @@ a.header__mainlink {
   object-position: center 15%;
 }
 @media (min-width: 1281px) {
-  .gallery__photo img {
+  .gallery__photo img, .gallery__video img {
     height: 18.75rem;
   }
 }
-.gallery__photo video {
+.gallery__photo video, .gallery__video video {
   width: 100%;
   height: 11.875rem;
   border-radius: 0.3125rem;
   object-fit: cover;
 }
 @media (min-width: 1281px) {
-  .gallery__photo video {
+  .gallery__photo video, .gallery__video video {
     height: 18.75rem;
   }
 }
@@ -628,6 +666,9 @@ a.header__mainlink {
   font-weight: 500;
   font-size: 0.875rem;
 }
+.gallery__heart--activ {
+  color: #D3573C;
+}
 
 .modalcontainer {
   display: none;
@@ -637,16 +678,12 @@ a.header__mainlink {
   top: 0;
   height: min-content;
   width: 100%;
+  height: 100%;
   overflow: hidden;
+  position: fixed;
   background: #525252;
   /*Fallback */
   background: rgba(82, 82, 82, 0.4);
-}
-@media (min-width: 768px) {
-  .modalcontainer {
-    position: fixed;
-    height: 100%;
-  }
 }
 @keyframes modalopen {
   from {
@@ -662,20 +699,22 @@ a.header__mainlink {
 }
 
 .modal__container {
-  width: 100%;
-  min-height: min-content;
   margin: 5.5625rem auto 0rem;
   animation-name: modalopen;
   animation-duration: 0.8s;
   background: #dc7b66;
   border-radius: 0.3125rem;
   overflow: hidden;
-  position: relative;
   color: #fff;
   padding: 2.375rem 2.375rem 2.375rem;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 @media (min-width: 768px) {
   .modal__container {
+    margin: 5.5625rem auto 0rem;
+    position: relative;
     width: 41.8125rem;
     border-radius: 0.625rem;
     margin: 5% auto;
@@ -683,20 +722,30 @@ a.header__mainlink {
   }
 }
 .modal__title {
-  font-size: 4rem;
+  font-size: 2.75rem;
   font-weight: 400;
   margin-bottom: 1.1875rem;
   color: #000;
+}
+@media (min-width: 768px) {
+  .modal__title {
+    font-size: 4rem;
+  }
 }
 .modal__registration {
   display: flex;
   flex-direction: column;
 }
 .modal__label {
-  font-size: 2.25rem;
+  font-size: 1.5rem;
   font-weight: 400;
   color: #312E2E;
   margin-bottom: 0.3125rem;
+}
+@media (min-width: 768px) {
+  .modal__label {
+    font-size: 2.25rem;
+  }
 }
 .modal__input {
   width: 100%;
@@ -719,7 +768,7 @@ a.header__mainlink {
 }
 .modal__textarea {
   width: 100%;
-  height: 10.625rem;
+  height: 18.75rem;
   border-radius: 0.3125rem;
   border: none;
   font-family: inherit;
@@ -732,6 +781,11 @@ a.header__mainlink {
 }
 .modal__textarea--error {
   border: 2px solid #ff0000;
+}
+@media (min-width: 768px) {
+  .modal__textarea {
+    height: 10.625rem;
+  }
 }
 .modal__btn {
   width: 10.625rem;
@@ -781,12 +835,12 @@ a.header__mainlink {
   z-index: 1;
   left: 0;
   top: 0;
-  height: min-content;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   background: #fff;
   /*Fallback */
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.8);
 }
 @media (min-width: 768px) {
   .lightboxcontainer {
@@ -808,17 +862,19 @@ a.header__mainlink {
 }
 
 .lightbox {
+  width: 80%;
+  height: 80%;
+  max-width: 62.5rem;
   min-width: 78.3125rem;
-  height: 61.5rem;
-  border: 1px solid #000;
   animation-name: modalopen;
   animation-duration: 0.8s;
   border-radius: 0.3125rem;
   overflow: hidden;
   position: relative;
-  padding: 1.375rem 6.25rem 0;
+  padding: 1.375rem 6.25rem 1.875rem;
   margin: 5% auto;
-  background: rgba(255, 255, 255, 0.8);
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .lightbox--show {
   display: block;
@@ -839,6 +895,13 @@ a.header__mainlink {
   top: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  transition: all 0.1s ease-out;
+}
+.lightbox__arrow:active {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-right: solid #D3573C;
+  border-bottom: solid #D3573C;
 }
 .lightbox__arrow--left {
   left: 2.5rem;
@@ -852,27 +915,33 @@ a.header__mainlink {
 }
 .lightbox__content {
   width: 100%;
-  height: fit-content;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
-.lightbox__img {
+.lightbox__img, .lightbox__video {
   width: 100%;
+  height: 95%;
 }
-.lightbox__img img {
+.lightbox__img img, .lightbox__video img {
   width: 100%;
   height: 100%;
-  max-height: 56.25rem;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 30%;
   border-radius: 0.3125rem;
 }
+.lightbox__img video, .lightbox__video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .lightbox__title {
+  width: 100%;
+  padding-top: 0.3125rem;
   font-size: 1.5rem;
   font-weight: 400;
   color: #000;
-  height: 10%;
 }
 
 /*# sourceMappingURL=style.css.map */

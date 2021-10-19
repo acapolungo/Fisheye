@@ -50,9 +50,9 @@ export class Video {
 
     render(photograph) {
         return (`
-            <section class="gallery">
+            <section class="gallery" media-id="${this.id}">
                 <a href="#">
-                    <div class="gallery__photo"><video controls src="../images/${photograph.folderName()}/${this.fileVideo}" alt="${this.title}" type="video/mp4">
+                    <div class="gallery__video"><video src="../images/${photograph.folderName()}/${this.fileVideo}" alt="${this.title}" type="video/mp4">
                     </video></div>
                 </a>
                 <div class="gallery__content">
@@ -77,10 +77,11 @@ export class Photo {
         this.likes = likes;
         this.date = date;
         this.price = price;
-    }
+    }  
+
     render(photograph) {
         return (`
-            <section class="gallery">
+            <section class="gallery" media-id="${this.id}">
                 <a href="#">
                     <div class="gallery__photo"><img src="../images/${photograph.folderName()}/${this.fileImage}" alt="${this.title}">
                     </div>

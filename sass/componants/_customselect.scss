@@ -6,6 +6,11 @@
     margin: 0 auto;
     position: relative;
     user-select: none;
+    display: flex;
+    align-items: center;
+    font-size: rem(18);
+    margin-top:rem(20);
+        font-weight: (700);
     @include tablet {
         padding: 0 rem(50);
     }
@@ -15,26 +20,26 @@
 }
 
 .select {
-    width: rem(200);
+    width: rem(180);
     position: relative;
     display: flex;
     flex-direction: column;
     border: none;
-    margin-top: rem(10);
+    margin-left: rem(20);
+
     &__trigger {
         position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 22px;
-        font-size: rem(22);
+        font-size: rem(18);
         font-weight: 300;
         color: #fff;
-        height: 60px;
-        line-height: 60px;
+        height: rem(60);
         background: $color-primary;
         cursor: pointer;
-        border: none;
+        border-radius: rem(5);
     }
     &__options {
         position: absolute;
@@ -42,7 +47,7 @@
         top: 100%;
         left: 0;
         right: 0;
-        border: none;
+        border-radius: rem(5);
         border-top: 0;
         background: $color-primary;
         transition: all 0.5s;
