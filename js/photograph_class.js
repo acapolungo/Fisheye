@@ -58,7 +58,7 @@ export class Photograph {
                 <button href="#" class="contact__btn">Contactez-moi</button>
                 <a href="#">
                     <div class="contact__profile">
-                        <img src="/images/PhotographersID/${this.portrait}" alt="${this.alt}">
+                        <img src="./images/PhotographersID/${this.portrait}" alt="${this.alt}">
                     </div>
                 </a>
                 </section> 
