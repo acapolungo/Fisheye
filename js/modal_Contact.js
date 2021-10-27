@@ -1,19 +1,21 @@
+
+import { onOpenModal, onCloseModal } from '../js/app.js';
+
 /* ============================= Gestion de la modale ============================= */
 
-
 // on utilise la délégation d'évènement sur contact
-export function modalManagement() {
-    const photographModalContainer = document.querySelector('.modalcontainer');
+export function modalManagement(mainWrapper, photographModalContainer) {
+
     document.addEventListener('click', e => {
         if (e.target && e.target.className == 'contact__btn') {
             //do something
-            photographModalContainer.classList.add('modalcontainer--show')
+            onOpenModal(mainWrapper,photographModalContainer);
         }
     });
     document.addEventListener('click', e => {
         if (e.target && e.target.className == 'modal__close') {
             //do something
-            photographModalContainer.classList.remove('modalcontainer--show')
+            onCloseModal(mainWrapper,photographModalContainer);
         }
     })  
 }

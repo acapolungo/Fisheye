@@ -1,14 +1,11 @@
 
-import { getData } from '../js/data.js';
 import { Photograph } from '../js/photograph_class.js';
 import { MediaFactory, Photo, Video } from './factory_class.js';
-import { modalManagement } from './modal_Contact.js';
+import { LightBox } from '../js/lightbox_class.js';
+import { getData } from '../js/data.js';
+import { modalManagement } from './modal_contact.js';
 import { wrapperSelect, getUrlParameter } from '../js/fonctions.js';
-import { LightBox, onOpenLightBox, onCloseLightbox } from '../js/lightbox_class.js';
-
-
-
-
+import { onOpenLightBox, onCloseLightbox, onOpenModal, onCloseModal } from '../js/app.js';
 
 /* ============================= Récupérer le photographe lié à cet ID ============================= */
 
@@ -50,7 +47,7 @@ function photographerMedia(mediaData, photographer) {
     return photographersMedia;
 }
 
-/* ============================= Gestion du tri des Medias  ============================= */
+/* ============================= Tri des Medias aux tags ============================= */
 
 function sortByLikes(selectedMedia) {
     return selectedMedia.sort((a, b) => {
@@ -93,6 +90,7 @@ function mediaSelectedHtml(selectedMedia, selectedPhotographer) {
             else if (selectedDataValue === 'Title') {
                 sortedMedia = sortByTitle(selectedMedia);
             }
+
             const sortedMediaHtml = sortedMedia.map(medium => medium.render(selectedPhotographer)).join(' ');
 
             document.querySelector('.gallerycontainer').innerHTML = sortedMediaHtml;
@@ -105,9 +103,6 @@ function mediaSelectedHtml(selectedMedia, selectedPhotographer) {
 function photographerMediaHtml(selectedMedia, selectedPhotographer) {
     //console.log(selectedMedia);
     return selectedMedia.map(medium => medium.render(selectedPhotographer)).join(' ');
-
-    // let toto = new PhotographRender(selectedPhotographer)
-    // return selectedMedia.map(medium => toto.render(medium, photograph)).join(' ');
 }
 
 /* ============================= Likes totaux du photographe ============================= */
@@ -115,13 +110,13 @@ function photographerMediaHtml(selectedMedia, selectedPhotographer) {
 function photographerLikesSum(selectedMedia) {
     let sumLikes = 0;
     for (const numberOfLikes of selectedMedia) {
-        sumLikes += numberOfLikes.likes
+        sumLikes += numberOfLikes.likes;
     }
     return sumLikes;
     //return selectedMedia.reduce((previousMedia , currentMedia) => previousMedia.likes + currentMedia.likes);
 }
 
-/* ============================= Incréementer les médias ============================= */
+/* ============================= Incrémenter les médias ============================= */
 
 function incrementTargetMedia(targetGalleryLike, selectedMedia) {
     let getMediaId = targetGalleryLike.closest("section").getAttribute("media-id");
@@ -137,6 +132,8 @@ function incrementSumLikes(photographLikesContainer, selectedMedia) {
     let sumLikescontainer = photographLikesContainer.childNodes[1].firstElementChild;
     sumLikescontainer.innerHTML = photographerLikesSum(selectedMedia);
 }
+
+/* ============================= Gestion de la galerie Home ============================= */
 
 function galleryManagement(galleryContainer, selectedMedia, photographLikesContainer, selectedPhotographer) {
     galleryContainer.addEventListener('click', e => {
@@ -154,26 +151,31 @@ function galleryManagement(galleryContainer, selectedMedia, photographLikesConta
             lightBoxIsClosed = false;
         }
         if (lightBoxIsClosed && getcurrentMediaId !== null) {
-            openLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer);
+            createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer, lightBoxIsClosed);
+            trapFocus(lightBoxContainer);
             lightBoxIsClosed = false;
         }
-    })
+    });
 }
 
 /* ============================= gestion de la lightBox ============================= */
 
 let mediaLightbox = null;
 let lastIndexSelected = -1;
+let previousActiveElement;
 
-// Gestion des addEventListener
+// Constante des conteneurs et des boutons de la lightbox et modal
 const arrowLeft = document.querySelector('.lightbox__arrow--left');
 const arrowRight = document.querySelector('.lightbox__arrow--right');
 const mainWrapper = document.querySelector('.mainpage');
 const lightBoxContainer = document.querySelector('.lightboxcontainer');
+const photographModalContainer = document.querySelector('.modalcontainer');
+const btnCloseLightBox = document.querySelector('.lightbox__btnclose');
+const selectContainer = document.querySelectorAll('.select__options');
+console.log(selectContainer)
 
-function openLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer) {
-    // const lightBoxContainer = document.querySelector('.lightboxcontainer');
-    // lightBoxContainer.classList.add('lightboxcontainer--show');
+function createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer) {
+    onOpenLightBox(mainWrapper, lightBoxContainer, btnCloseLightBox);
 
     // test pour savoir comparer deux Id selectionné et refaire la lightBox;
     if (mediaLightbox === null || lastIndexSelected != getcurrentMediaId) {
@@ -186,40 +188,107 @@ function openLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer) {
     arrowLeft.addEventListener('click', previousElement);
     arrowRight.addEventListener('click', nextElement);
 
-    closeLightbox(lightBoxContainer);
+    closeLightbox(mainWrapper, lightBoxContainer);
 }
-
-function closeLightbox(lightBoxContainer) {
-    const btncloseLb = document.querySelector('.lightbox__btnclose');
-    btncloseLb.addEventListener('click', function() {
-        lightBoxContainer.classList.remove('lightboxcontainer--show');
-        arrowLeft.removeEventListener('click', previousElement);
-        arrowRight.removeEventListener('click', nextElement);
-        // mediaLightbox = null;
-        // lastIndexSelected = -1;
-    });
-}
-
-function previousElement(event) {
-    console.log(event)
+function previousElement() {
     mediaLightbox.previousMedia();
     document.querySelector('.lightbox__content').innerHTML = lightBoxRenderHtml(mediaLightbox);
 }
-function nextElement(event) {
-    console.log(event)
+function nextElement() {
     mediaLightbox.nextMedia();
     document.querySelector('.lightbox__content').innerHTML = lightBoxRenderHtml(mediaLightbox);
 }
 function lightBoxRenderHtml(mediaLightbox) {
     lastIndexSelected = mediaLightbox.getLastMediaId();
-    console.log(lastIndexSelected)
+    //console.log(lastIndexSelected)
     return mediaLightbox.render();
 }
+
+// Close modal au click
+function closeLightbox() {
+    const btnCloseLightBox = document.querySelector('.lightbox__btnclose');
+    btnCloseLightBox.addEventListener('click', function () {
+        arrowLeft.removeEventListener('click', previousElement);
+        arrowRight.removeEventListener('click', nextElement);
+
+        onCloseLightbox(mainWrapper, lightBoxContainer);
+    });
+}
+
+/* ============================= gestion des evenements key ============================= */
+
+document.addEventListener('keydown', e => {
+    let keyCode;
+
+    if (e.key !== undefined) {
+        keyCode = e.key;
+    }
+    if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Escape') {
+        onCloseLightbox(mainWrapper, lightBoxContainer);
+    }
+    if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowLeft') {
+        previousElement();
+    }
+    if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowRight') {
+        nextElement();
+    }
+    if (photographModalContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Escape') {
+        onCloseModal(mainWrapper, photographModalContainer);
+    }
+    if (keyCode !== 'ArrowDown' && keyCode !== 'ArrowUp') return
+    e.preventDefault()
+    const option = e.target
+  
+    let selectedOption
+    if (keyCode === 'ArrowDown') selectedOption = option.nextElementSibling
+    if (keyCode === 'ArrowUp') selectedOption = option.previousElementSibling
+  
+    if (selectedOption) {
+      selectedOption.focus();
+      selectContainer.forEach(element => { console.log(element) })
+      selectedOption.setAttribute('tabindex', 0);
+    }
+});
+
+// function trapFocus(element) {
+//     let focusableEls = element.querySelectorAll('div:not([disabled]), a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
+//     let firstFocusableEl = focusableEls[0];
+//     console.log(firstFocusableEl)
+//     let lastFocusableEl = focusableEls[focusableEls.length - 1];
+//     console.log(lastFocusableEl)
+//     let KEYCODE_TAB = 9;
+
+//     if(element.getAttribute('aria-hidden') === false) {
+//         debugger
+//         document.addEventListener('keydown', function (e) {
+//             e.preventDefault();
+//             var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+
+
+//             if (!isTabPressed) {
+//                 return;
+//             }
+
+//             if (e.shiftKey) /* shift + tab */ {    
+//                 if (document.activeElement === firstFocusableEl) {
+//                     lastFocusableEl.focus();
+//                     //e.preventDefault();
+//                 }
+//             } else /* tab */ {    
+//                 if (document.activeElement === lastFocusableEl) {
+//                     firstFocusableEl.focus();
+//                     //e.preventDefault();
+//                 }
+//             }
+//         });     
+//     }
+// }
 
 /* ============================= Gestion de la page ============================= */
 
 const mainPhotographer = function () {
     getData().then(({ photographers: photographersData, media: mediaData }) => {
+
         // Id du photographe de l'url
         const photographerId = parseInt(getUrlParameter('id'), 10);
 
@@ -233,18 +302,15 @@ const mainPhotographer = function () {
         const selectedPhotographer = findPhotographer(photographersData, photographerId);
         const selectedMedia = photographerMedia(mediaData, selectedPhotographer);
 
-        // on créer les rendu Html
+        // on créer les rendus Html
         const photographerHtml = selectedPhotographer.photographerRender();
         const photographerModalHtml = selectedPhotographer.photographerModalRender();
         const selectedMediaAllLikes = photographerLikesSum(selectedMedia);
         const photographerLikesHtml = selectedPhotographer.photographLikesRender(selectedMediaAllLikes);
         mediaSelectedHtml(selectedMedia, selectedPhotographer);
         galleryManagement(galleryContainer, selectedMedia, photographLikesContainer, selectedPhotographer);
-        // let lightbox = new LightBox(selectedMedia, 235234343)
-        // console.log(lightbox.render(selectedPhotographer));
-        // lightbox.nextMedia();
-        // console.log(lightbox.render(selectedPhotographer));
- 
+
+        // on affuche les rendus
         photographContainer.innerHTML = photographerHtml;
         photographModalContainer.innerHTML = photographerModalHtml;
         photographLikesContainer.innerHTML = photographerLikesHtml;
@@ -253,5 +319,5 @@ const mainPhotographer = function () {
 }
 
 mainPhotographer();
-modalManagement()
 wrapperSelect();
+modalManagement(mainWrapper, photographModalContainer)

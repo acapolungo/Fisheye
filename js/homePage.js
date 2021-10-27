@@ -28,7 +28,7 @@ import { getScrollPosition } from './fonctions.js';
 
 function photographers(photographersData) {
     //console.log(photographers)
-    return photographersData.map( photographerData => new Photograph(photographerData));
+    return photographersData.map(photographerData => new Photograph(photographerData));
 }
 
 /* ============================= Render de la classe photographe ============================= */
@@ -62,7 +62,7 @@ const uniqTags = function (array) {
 function displayUniqTags(allPhotographers) {
     const category = document.querySelector('.header__category');
 
-    const tagsHtml = uniqTags(allPhotographers).map(tag => `<a href="#" class="header__tags">${tag}</a>`).join('');
+    const tagsHtml = uniqTags(allPhotographers).map(tag => `<a href="#" data-photo="${tag}" class="header__tags">${tag}</a>`).join('');
     category.innerHTML = tagsHtml;
 
     const headerTags = document.querySelectorAll('.header__tags');
@@ -70,13 +70,15 @@ function displayUniqTags(allPhotographers) {
 }
 
 /* ============================= Gestion du style des tags ============================= */
+
 const selectedTagsSet = new Set();
 function showPhotographersTagged(e, allPhotographers) {
     // Au clic ajoute la classe active si elle n'existe pas
-    e.target.classList.toggle('active')
+    e.target.classList.toggle('active');
 
     // stock dans un set les elements cliqués
-    const targetedTag = e.target.text;  
+    const targetedTag = e.target.text;
+
     if (selectedTagsSet.has(targetedTag)) {
         selectedTagsSet.delete(targetedTag);
     } 
@@ -88,7 +90,27 @@ function showPhotographersTagged(e, allPhotographers) {
 
     // on vide le tableau dynamicPhotographs et on retourne les photographes qui possèdent un tag correspondant
     const taggedPhotographers = allPhotographers.filter(photograph => photograph.hasTags(selectedTagsArray));
+
     taggedPhotographers.length === 0 ? displayPhotographersHome(allPhotographers) : displayPhotographersHome(taggedPhotographers);
+    showTagsActive(selectedTagsArray)
+}
+
+/* ============================= Gestion du style des tags sur les photographes ============================= */
+function showTagsActive(selectedTagsArray) { 
+    let sectionPhotograph = document.querySelectorAll('.home .home__photographers');
+
+    selectedTagsArray.forEach(function(elt) {
+        let SeletedTagsName = elt;
+        sectionPhotograph.forEach(function(section) {
+            let homeCategory = section.lastElementChild.children;
+            for (let tags of homeCategory) {
+                if(tags.text === SeletedTagsName) {
+                    //console.log(tags)
+                    tags.classList.add('active');
+                }
+            }
+        })
+    })
 }
 
 /* ============================= Charge la page et créer les photographes et les tags globaux ============================= */

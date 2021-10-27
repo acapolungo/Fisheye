@@ -14,6 +14,12 @@
     &:hover {
         color: #fff;
         background-color: $color-primary;
+        transform: scale(.95, .95);
+    }
+    &.active {
+        color: #fff;
+        background-color: $color-primary;
+        transform: scale(.95, .95);
     }
 }
 
@@ -43,6 +49,7 @@ a {
     z-index: 1;
     color: #fff;
     border: none;
+    padding: rem(5);
     font-size: rem(20);
     font-weight: 700;
     border-radius: rem(5);
@@ -70,40 +77,49 @@ a {
     }
 }
 
-
 .lightbox__btnclose {
     height: rem(20);
     width: rem(20);
     position: absolute;
     display: inline-block;
-    right: rem(65);
+    right: rem(5);
+    top: rem(10);
     cursor: pointer;
-
-    &:before, &:after  {
+    @include tablet {
+        height: rem(40);
         width: rem(40);
-        height: rem(8);
+        right: rem(40);
+        top: rem(30);
+    }
+    &:before, &:after  {
+        width: rem(20);
+        height: rem(4);
         content: '';
         position: absolute;
-        transform: rotate(45deg);
         top: 50%;
         left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
         display: block;
         background-color: $color-primary;
         transition: all 0.25s ease-out;
+        @include tablet {
+            width: rem(40);
+            height: rem(8);
+        }
     }
     &:after {
-        transform: rotate(-45deg);
+        transform: translate(-50%, -50%) rotate(-45deg);
     }
 
     &:hover {
         &:before {
+            transform: translate(-50%, -50%) rotate(-45deg);
             height: rem(5);
-            transform: rotate(135deg);
             background: $color-secondary;
         }
         &:after {
+            transform: translate(-50%, -50%) rotate(45deg);
             height: rem(5);
-            transform: rotate(-135deg);
             background: $color-secondary;
         }
     }

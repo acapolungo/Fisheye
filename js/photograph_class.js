@@ -24,7 +24,7 @@ export class Photograph {
     templateTags() {
         let concatTags = '';
         this.tags.forEach(function (element) {
-            concatTags += `<a href="" class="home__tags">${element}</a>`
+            concatTags += `<a href="#" class="home__tags">${element}</a>`
         });
         return concatTags;
     }
@@ -35,8 +35,8 @@ export class Photograph {
     }
 
     templateRender() {
-        return `<section class="home__photographers">
-                <a href="html/photographer_page.html?id=${this.id}" class="home__profile"><img src="/images/PhotographersID/${this.portrait}" alt="portrait de ${this.alt}">
+        return `<section class="home__photographers" aria-label="photographer">
+                <a tabindex="0" href="photographer_page.html?id=${this.id}" class="home__profile"><img src="/images/PhotographersID/${this.portrait}" alt="${this.alt}" loading="lazy">
                         <h2 class="home__name">${this.name}</h2></a>
                     <div class="home__info">
                         <p class="home__location">${this.locationConcat()}</p>
@@ -48,17 +48,17 @@ export class Photograph {
     }
 
     photographerRender() {
-        return ` <section class="contact">
+        return ` <section class="contact" aria-label="photographerID">
                 <div class="contact__infos">
-                    <h1 class="contact__name">${this.name}</h1>
-                    <div class="contact__location">${this.locationConcat()}</div>
-                    <div class="contact__citation">${this.tagline}</div>
+                    <h1 class="contact__name" tabindex="1">${this.name}</h1>
+                    <div class="contact__location" tabindex="1">${this.locationConcat()}</div>
+                    <div class="contact__citation" tabindex="1">${this.tagline}</div>
                     <div class="contact__category">${this.templateTags()}</div>
                 </div>
                 <button href="#" class="contact__btn">Contactez-moi</button>
                 <a href="#">
                     <div class="contact__profile">
-                        <img src="/images/PhotographersID/${this.portrait}" alt="portrait de ${this.alt}">
+                        <img src="/images/PhotographersID/${this.portrait}" alt="${this.alt}">
                     </div>
                 </a>
                 </section> 

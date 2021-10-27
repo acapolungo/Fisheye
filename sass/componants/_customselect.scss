@@ -20,7 +20,7 @@
 }
 
 .select {
-    width: rem(180);
+    width: rem(170);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -30,6 +30,7 @@
     &__trigger {
         position: relative;
         display: flex;
+        width: 100%;
         align-items: center;
         justify-content: space-between;
         padding: 0 22px;

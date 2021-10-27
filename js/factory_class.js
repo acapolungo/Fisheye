@@ -47,12 +47,12 @@ export class Video {
         this.date = date;
         this.price = price;
     }
-
+    
     render(photograph) {
         return (`
-            <section class="gallery" media-id="${this.id}">
+            <section class="gallery" aria-label="video">
                 <a href="#">
-                    <div class="gallery__video"><video src="../images/${photograph.folderName()}/${this.fileVideo}" alt="${this.title}" type="video/mp4">
+                    <div class="gallery__video"><video controls src="../images/${photograph.folderName()}/${this.fileVideo}" alt="${this.title}" type="video/mp4" loading="lazy">
                     </video></div>
                 </a>
                 <div class="gallery__content">
@@ -81,9 +81,9 @@ export class Photo {
 
     render(photograph) {
         return (`
-            <section class="gallery" media-id="${this.id}">
+            <section class="gallery" media-id=${this.id} aria-label="photo">
                 <a href="#">
-                    <div class="gallery__photo"><img src="../images/${photograph.folderName()}/${this.fileImage}" alt="${this.title}">
+                    <div class="gallery__photo"><img src="../images/${photograph.folderName()}/${this.fileImage}" alt="${this.title}" loading="lazy">
                     </div>
                 </a>
                 <div class="gallery__content">

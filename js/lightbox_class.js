@@ -14,11 +14,7 @@ export class LightBox {
         if (currentMedia === undefined) {
             return;
         }
-        // this.index = arrayMedia.forEach((medium, idx) => {
-        //     if (medium === currentMedia) {
-        //         return idx;
-        //     }
-        // });
+        
         this.photograph = selectedPhotographer;
         this.arrayMedia = arrayMedia;
 

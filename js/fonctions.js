@@ -24,18 +24,29 @@ export function getScrollPosition() {
 }
 
 export function wrapperSelect() {
-    const wrapper = document.querySelector('.selectcontainer')
-    wrapper.addEventListener('click', function(e) {
-        this.querySelector('.select').classList.toggle('open');
-    })
-    
-    // eleve et remet le classe selected au clic, remplace la valeur du span de selection
+    const wrapper = document.querySelector('.select')
+    wrapper.addEventListener('click', function (e) {
+        //this.querySelector('.select').classList.toggle('open');
+        wrapper.classList.toggle('open');
+        if (wrapper.classList.contains('open')) {
+            this.setAttribute('aria-expanded', 'true');
+            this.childNodes[3].setAttribute('aria-expanded', 'true');
+        } else {
+            this.setAttribute('aria-expanded', 'false');
+            this.childNodes[3].setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // eToggle la classe selected au clic, remplace la valeur du span de selection
     for (const option of document.querySelectorAll(".select__opt")) {
-        option.addEventListener('click', function() {
+        option.addEventListener('click', function () {
             if (!this.classList.contains('selected')) {
+                //this.parentNode.querySelector('.select__opt.selected').setAttribute('tabindex', 0)
                 this.parentNode.querySelector('.select__opt.selected').classList.remove('selected');
                 this.classList.add('selected');
+                this.focus();
                 this.closest('.select').querySelector('.select__trigger span').textContent = this.textContent;
+                //this.setAttribute('tabindex', -1)
             }
         })
     }

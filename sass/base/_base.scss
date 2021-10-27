@@ -27,7 +27,7 @@ a {
     // &:visited {
     //     color: lighten($color-primary, 10%);
     // }
-    &.active, a:hover {
+    a:hover {
         color: #fff;
         background-color: $color-primary;
         transform: scale(.95, .95);
