@@ -9,8 +9,7 @@
     display: flex;
     align-items: center;
     font-size: rem(18);
-    margin-top:rem(20);
-        font-weight: (700);
+    margin-top: rem(20);
     @include tablet {
         padding: 0 rem(50);
     }
@@ -19,97 +18,60 @@
     }
 }
 
-.select {
-    width: rem(170);
+.select__cont {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    border: none;
-    margin-left: rem(20);
+    margin-left: rem(15);
+    width: rem(150);
+    height: rem(60);
+    border-radius: rem(5);
+    display: inline-block;
+}
 
-    &__trigger {
-        position: relative;
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 22px;
-        font-size: rem(18);
-        font-weight: 300;
-        color: #fff;
-        height: rem(60);
-        background: $color-primary;
-        cursor: pointer;
-        border-radius: rem(5);
+/* turn it off completely */
+select:active,
+select:hover {
+    outline: none;
+}
+
+/* make it red instead (with with same width and style) */
+select:active,
+select:hover {
+    outline-color: $color-primary;
+}
+
+.select__style {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    padding-left: rem(10);
+    font-size: rem(20);
+    background-color: $color-primary;
+    border-radius: rem(5);
+    box-shadow: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, white 50%),
+        linear-gradient(135deg, #fff 50%, transparent 50%);
+    background-position: calc(100% - 23px) calc(1em + 6px), calc(100% - 15px) calc(1em + 6px), 100% 0;
+    background-size: 8px 8px, 8px 8px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease-out;
+    &:focus {
+        background-image: linear-gradient(45deg, white 50%, transparent 50%),
+            linear-gradient(135deg, transparent 50%, white 50%);
+        background-position: calc(100% - 15px) calc(1em + 6px), calc(100% - 23px) calc(1em + 6px), 100% 0;
+        background-size: 8px 8px, 8px 8px, 2.5em 2.5em;
+        background-repeat: no-repeat;
+        border-color: lighten($color-primary, 10%);
+        outline: 0;
     }
-    &__options {
-        position: absolute;
-        display: block;
-        top: 100%;
-        left: 0;
-        right: 0;
-        border-radius: rem(5);
-        border-top: 0;
-        background: $color-primary;
-        transition: all 0.5s;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        z-index: 2;
-    }
-    &.open .select__options {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: all;
-    }
-    &__opt {
-        position: relative;
-        display: block;
-        padding: 0 22px 0 22px;
-        font-size: rem(20);
-        font-weight: 300;
-        color: #fff;
-        line-height: 60px;
-        cursor: pointer;
-        transition: all 0.5s;
+    > option {
+        background-color: lighten($color-primary, 10%);
         &:hover {
-            cursor: pointer;
-            background-color:lighten($color-primary, 25%);
-        }
-        &.selected {
-            color: $color-primary;
-            background-color: lighten($color-primary, 40%);
-        }
-    }
-    &__arrow {
-        position: relative;
-        height: 15px;
-        width: 15px;
-        &::before, &::after {
-            content: "";
-            position: absolute;
-            bottom: 0px;
-            width: 0.15rem;
-            height: 100%;
-            transition: all 0.5s;
-        }
-        &::before {
-            left: -5px;
-            transform: rotate(45deg);
-            background-color: #fff;
-        }
-        &::after {
-            left: 5px;
-            transform: rotate(-45deg);
-            background-color: #fff;
-        }
-        .open &::before {
-            left: -5px;
-            transform: rotate(-45deg);
-        }
-        .open &::after {
-            left: 5px;
-            transform: rotate(45deg);
+            -webkit-box-shadow: 0 0 10px 100px $color-primary inset;
+            -moz-box-shadow: 0 0 10px 100px $color-primary inset;
+            box-shadow: 0 0 10px 100px $color-primary inset;
         }
     }
 }

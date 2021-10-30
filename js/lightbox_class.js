@@ -14,7 +14,7 @@ export class LightBox {
         if (currentMedia === undefined) {
             return;
         }
-        
+
         this.photograph = selectedPhotographer;
         this.arrayMedia = arrayMedia;
 
@@ -46,7 +46,7 @@ export class LightBox {
         if (this.index !== undefined && this.arrayMedia !== undefined
             && this.index >= 0 && this.index < this.arrayMedia.length) {
             this.index++;
-            if(this.index >= this.arrayMedia.length) {
+            if (this.index >= this.arrayMedia.length) {
                 this.index = 0;
             }
         }
@@ -56,8 +56,8 @@ export class LightBox {
         if (this.index !== undefined && this.arrayMedia !== undefined
             && this.index >= 0 && this.index < this.arrayMedia.length) {
             this.index--;
-            if(this.index < 0) {
-                this.index = this.arrayMedia.length-1;
+            if (this.index < 0) {
+                this.index = this.arrayMedia.length - 1;
             }
         }
     }

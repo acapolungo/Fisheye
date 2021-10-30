@@ -1,6 +1,7 @@
-.header__tags, .home__tags {
+.header__tags,
+.home__tags {
     &::before {
-        content: '#';
+        content: "#";
     }
     color: $color-primary;
     background: $color-bg;
@@ -14,12 +15,12 @@
     &:hover {
         color: #fff;
         background-color: $color-primary;
-        transform: scale(.95, .95);
+        transform: scale(0.95, 0.95);
     }
     &.active {
         color: #fff;
         background-color: $color-primary;
-        transform: scale(.95, .95);
+        transform: scale(0.95, 0.95);
     }
 }
 
@@ -46,7 +47,6 @@ a {
 }
 
 .contact__btn {
-    z-index: 1;
     color: #fff;
     border: none;
     padding: rem(5);
@@ -63,14 +63,15 @@ a {
     bottom: rem(30);
     left: 50%;
     transform: translate(-50%, 0);
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         color: black;
         background-color: $color-secondary;
     }
     @include tablet {
         width: rem(150);
         height: rem(49);
-        position:initial;
+        position: initial;
         margin-left: rem(30);
         margin-top: rem(15);
         transform: initial;
@@ -84,6 +85,8 @@ a {
     display: inline-block;
     right: rem(5);
     top: rem(10);
+    border: none;
+    background-color: #fff;
     cursor: pointer;
     @include tablet {
         height: rem(40);
@@ -91,10 +94,11 @@ a {
         right: rem(40);
         top: rem(30);
     }
-    &:before, &:after  {
+    &:before,
+    &:after {
         width: rem(20);
         height: rem(4);
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         left: 50%;

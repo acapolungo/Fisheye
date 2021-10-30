@@ -1,20 +1,18 @@
 .lightboxcontainer {
     display: none;
     z-index: 1;
-    left: 0;
-    top: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     position: fixed;
+    left: 0;    
+    top: 0;
     @include background-opacity(#fff, 0.9);
     @include modal;
-    &--show {
-        display: block;
-    }
 }
 
 .lightbox {
+    z-index: 10;
     width: 100%;
     height: 30%;
     position: relative;
@@ -27,9 +25,6 @@
     padding: rem(20) rem(30) rem(20);
     background: rgba(#ffffff, 1);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    &--show {
-        display: block;
-    }
     @include tablet {
         top: 0;
         transform: translateY(0);

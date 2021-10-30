@@ -1,31 +1,33 @@
 export const onOpenLightBox = (mainWrapper, lightBoxContainer, btnCloseLightBox) => {
-    mainWrapper.setAttribute('aria-hidden', 'true');
+    lightBoxContainer.style.display = 'block';
     lightBoxContainer.setAttribute('aria-hidden', 'false');
+    lightBoxContainer.setAttribute('aria-modal', 'true');
+    mainWrapper.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'hidden';
-    lightBoxContainer.classList.add('lightboxcontainer--show');
-    btnCloseLightBox.focus()
+    btnCloseLightBox.focus();
 }
 
 export const onCloseLightbox = (mainWrapper, lightBoxContainer) => {
-    mainWrapper.setAttribute('aria-hidden', 'false');
+    lightBoxContainer.style.display = 'none';
     lightBoxContainer.setAttribute('aria-hidden', 'true');
+    lightBoxContainer.removeAttribute('aria-modal');
+    mainWrapper.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'visible';
-    lightBoxContainer.classList.remove('lightboxcontainer--show');
-    //$openModalBtn.focus()
 }
 
 export const onOpenModal = (mainWrapper, photographModalContainer) => {
-    mainWrapper.setAttribute('aria-hidden', 'true');
+    photographModalContainer.style.display = 'block';
     photographModalContainer.setAttribute('aria-hidden', 'false');
+    photographModalContainer.setAttribute('aria-modal', 'true');
+    mainWrapper.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'hidden';
-    photographModalContainer.classList.add('modalcontainer--show')
-    //$modalCloseBtn.focus()
+    document.querySelector('.modal__close').focus();
 }
 
 export const onCloseModal = (mainWrapper, photographModalContainer) => {
-    mainWrapper.setAttribute('aria-hidden', 'false');
+    photographModalContainer.style.display = 'none';
     photographModalContainer.setAttribute('aria-hidden', 'true');
+    photographModalContainer.setAttribute('aria-modal', 'false');
+    mainWrapper.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'visible';
-    photographModalContainer.classList.remove('modalcontainer--show')
-    //$openModalBtn.focus()
 }

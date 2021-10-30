@@ -31,7 +31,8 @@ a a:hover {
   transform: scale(0.95, 0.95);
 }
 
-.header__tags, .home__tags {
+.header__tags,
+.home__tags {
   color: #901C1C;
   background: #fff;
   font-size: 0.75rem;
@@ -42,15 +43,18 @@ a a:hover {
   border: 1px solid #C4C4C4;
   border-radius: 0.6875rem;
 }
-.header__tags::before, .home__tags::before {
+.header__tags::before,
+.home__tags::before {
   content: "#";
 }
-.header__tags:hover, .home__tags:hover {
+.header__tags:hover,
+.home__tags:hover {
   color: #fff;
   background-color: #901C1C;
   transform: scale(0.95, 0.95);
 }
-.header__tags.active, .home__tags.active {
+.header__tags.active,
+.home__tags.active {
   color: #fff;
   background-color: #901C1C;
   transform: scale(0.95, 0.95);
@@ -79,7 +83,6 @@ a.header__mainlink {
 }
 
 .contact__btn {
-  z-index: 1;
   color: #fff;
   border: none;
   padding: 0.3125rem;
@@ -119,6 +122,8 @@ a.header__mainlink {
   display: inline-block;
   right: 0.3125rem;
   top: 0.625rem;
+  border: none;
+  background-color: #fff;
   cursor: pointer;
 }
 @media (min-width: 768px) {
@@ -173,7 +178,6 @@ a.header__mainlink {
   align-items: center;
   font-size: 1.125rem;
   margin-top: 1.25rem;
-  font-weight: 700;
 }
 @media (min-width: 768px) {
   .selectcontainer {
@@ -186,98 +190,60 @@ a.header__mainlink {
   }
 }
 
-.select {
-  width: 10.625rem;
+.select__cont {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  border: none;
-  margin-left: 1.25rem;
-}
-.select__trigger {
-  position: relative;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 22px;
-  font-size: 1.125rem;
-  font-weight: 300;
-  color: #fff;
+  margin-left: 0.9375rem;
+  width: 9.375rem;
   height: 3.75rem;
-  background: #901C1C;
-  cursor: pointer;
   border-radius: 0.3125rem;
+  display: inline-block;
 }
-.select__options {
-  position: absolute;
-  display: block;
-  top: 100%;
-  left: 0;
-  right: 0;
-  border-radius: 0.3125rem;
-  border-top: 0;
-  background: #901C1C;
-  transition: all 0.5s;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 2;
+
+/* turn it off completely */
+select:active,
+select:hover {
+  outline: none;
 }
-.select.open .select__options {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
+
+/* make it red instead (with with same width and style) */
+select:active,
+select:hover {
+  outline-color: #901C1C;
 }
-.select__opt {
-  position: relative;
-  display: block;
-  padding: 0 22px 0 22px;
-  font-size: 1.25rem;
-  font-weight: 300;
-  color: #fff;
-  line-height: 60px;
-  cursor: pointer;
-  transition: all 0.5s;
-}
-.select__opt:hover {
-  cursor: pointer;
-  background-color: #dd4f4f;
-}
-.select__opt.selected {
-  color: #901C1C;
-  background-color: #e98f8f;
-}
-.select__arrow {
-  position: relative;
-  height: 15px;
-  width: 15px;
-}
-.select__arrow::before, .select__arrow::after {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  width: 0.15rem;
+
+.select__style {
+  width: 100%;
   height: 100%;
-  transition: all 0.5s;
+  color: #fff;
+  padding-left: 0.625rem;
+  font-size: 1.25rem;
+  background-color: #901C1C;
+  border-radius: 0.3125rem;
+  box-shadow: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(135deg, #fff 50%, transparent 50%);
+  background-position: calc(100% - 23px) calc(1em + 6px), calc(100% - 15px) calc(1em + 6px), 100% 0;
+  background-size: 8px 8px, 8px 8px, 2.5em 2.5em;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-out;
 }
-.select__arrow::before {
-  left: -5px;
-  transform: rotate(45deg);
-  background-color: #fff;
+.select__style:focus {
+  background-image: linear-gradient(45deg, white 50%, transparent 50%), linear-gradient(135deg, transparent 50%, white 50%);
+  background-position: calc(100% - 15px) calc(1em + 6px), calc(100% - 23px) calc(1em + 6px), 100% 0;
+  background-size: 8px 8px, 8px 8px, 2.5em 2.5em;
+  background-repeat: no-repeat;
+  border-color: #bb2424;
+  outline: 0;
 }
-.select__arrow::after {
-  left: 5px;
-  transform: rotate(-45deg);
-  background-color: #fff;
+.select__style > option {
+  background-color: #bb2424;
 }
-.open .select__arrow::before {
-  left: -5px;
-  transform: rotate(-45deg);
-}
-.open .select__arrow::after {
-  left: 5px;
-  transform: rotate(45deg);
+.select__style > option:hover {
+  -webkit-box-shadow: 0 0 10px 100px #901C1C inset;
+  -moz-box-shadow: 0 0 10px 100px #901C1C inset;
+  box-shadow: 0 0 10px 100px #901C1C inset;
 }
 
 .header {
@@ -382,7 +348,6 @@ a.header__mainlink {
   display: block;
   position: fixed;
   top: 3.125rem;
-  z-index: 100;
   animation: fadeIn 0.3s;
 }
 .header__mainlink--reveal:hover {
@@ -717,9 +682,6 @@ a.header__mainlink {
     opacity: 1;
   }
 }
-.modalcontainer--show {
-  display: block;
-}
 
 .modal__container {
   margin: 5.5625rem auto 0rem;
@@ -825,20 +787,24 @@ a.header__mainlink {
 .modal__close {
   position: absolute;
   display: block;
-  width: 0.625rem;
-  height: 0.625rem;
-  right: 3.4375rem;
-  top: 1.875rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  right: 1.5625rem;
+  top: 1.5625rem;
   opacity: 1;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 .modal__close::before, .modal__close::after {
   position: absolute;
-  left: 15px;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  display: block;
   content: " ";
   height: 25px;
   width: 3px;
-  background-color: #fff;
 }
 @media (min-width: 768px) {
   .modal__close::before, .modal__close::after {
@@ -846,21 +812,21 @@ a.header__mainlink {
   }
 }
 .modal__close::before {
-  transform: rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 .modal__close::after {
-  transform: rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .lightboxcontainer {
   display: none;
   z-index: 1;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: fixed;
+  left: 0;
+  top: 0;
   background: #fff;
   /*Fallback */
   background: rgba(255, 255, 255, 0.9);
@@ -874,11 +840,9 @@ a.header__mainlink {
     opacity: 1;
   }
 }
-.lightboxcontainer--show {
-  display: block;
-}
 
 .lightbox {
+  z-index: 10;
   width: 100%;
   height: 30%;
   position: relative;
@@ -891,9 +855,6 @@ a.header__mainlink {
   padding: 1.25rem 1.875rem 1.25rem;
   background: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-.lightbox--show {
-  display: block;
 }
 @media (min-width: 768px) {
   .lightbox {

@@ -4,8 +4,8 @@ import { MediaFactory, Photo, Video } from './factory_class.js';
 import { LightBox } from '../js/lightbox_class.js';
 import { getData } from '../js/data.js';
 import { modalManagement } from './modal_contact.js';
-import { wrapperSelect, getUrlParameter } from '../js/fonctions.js';
-import { onOpenLightBox, onCloseLightbox, onOpenModal, onCloseModal } from '../js/app.js';
+import { getUrlParameter } from '../js/fonctions.js';
+import { onOpenLightBox, onCloseLightbox, onCloseModal } from '../js/app.js';
 
 /* ============================= Récupérer le photographe lié à cet ID ============================= */
 
@@ -77,9 +77,10 @@ function sortByTitle(selectedMedia) {
 }
 
 function mediaSelectedHtml(selectedMedia, selectedPhotographer) {
-    for (const option of document.querySelectorAll(".select__options")) {
-        option.addEventListener('click', function (e) {
-            let selectedDataValue = e.target.getAttribute('data-value');
+    // pas de loop sur les select__options ?
+    let selectContainer = document.querySelector(".select__style")
+        selectContainer.addEventListener('change', function () {     
+            let selectedDataValue = this.value;
             let sortedMedia;
             if (selectedDataValue === 'Likes') {
                 sortedMedia = sortByLikes(selectedMedia);
@@ -95,7 +96,6 @@ function mediaSelectedHtml(selectedMedia, selectedPhotographer) {
 
             document.querySelector('.gallerycontainer').innerHTML = sortedMediaHtml;
         });
-    }
 }
 
 /* ============================= Rendu des Medias ============================= */
@@ -146,13 +146,15 @@ function galleryManagement(galleryContainer, selectedMedia, photographLikesConta
         }
         if (lightBoxIsClosed && targetGalleryLike !== null) {
             //do something
+            e.preventDefault();
             incrementTargetMedia(targetGalleryLike, selectedMedia);
             incrementSumLikes(photographLikesContainer, selectedMedia);
             lightBoxIsClosed = false;
         }
         if (lightBoxIsClosed && getcurrentMediaId !== null) {
+            e.preventDefault();
             createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer, lightBoxIsClosed);
-            trapFocus(lightBoxContainer);
+            //trapFocus(lightBoxContainer);
             lightBoxIsClosed = false;
         }
     });
@@ -162,19 +164,18 @@ function galleryManagement(galleryContainer, selectedMedia, photographLikesConta
 
 let mediaLightbox = null;
 let lastIndexSelected = -1;
-let previousActiveElement;
 
 // Constante des conteneurs et des boutons de la lightbox et modal
+const mainWrapper = document.querySelector('.mainpage');
+const photographModalContainer = document.querySelector('.modalcontainer');
+const lightBoxContainer = document.querySelector('.lightboxcontainer');
 const arrowLeft = document.querySelector('.lightbox__arrow--left');
 const arrowRight = document.querySelector('.lightbox__arrow--right');
-const mainWrapper = document.querySelector('.mainpage');
-const lightBoxContainer = document.querySelector('.lightboxcontainer');
-const photographModalContainer = document.querySelector('.modalcontainer');
 const btnCloseLightBox = document.querySelector('.lightbox__btnclose');
-const selectContainer = document.querySelectorAll('.select__options');
-console.log(selectContainer)
+const focusableSelector = 'button, a, input, textarea';
+let focusableArray = [];
 
-function createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer) {
+function createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer, e) {
     onOpenLightBox(mainWrapper, lightBoxContainer, btnCloseLightBox);
 
     // test pour savoir comparer deux Id selectionné et refaire la lightBox;
@@ -185,16 +186,19 @@ function createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer) 
     let lightboxContent = document.querySelector('.lightbox__content');
     lightboxContent.innerHTML = lightBoxRenderHtml(mediaLightbox, selectedPhotographer);
 
-    arrowLeft.addEventListener('click', previousElement);
-    arrowRight.addEventListener('click', nextElement);
-
-    closeLightbox(mainWrapper, lightBoxContainer);
+    // on va récupérer les éléments selectionnables de la lightbox (récupéré plus tard au Tab)
+    focusableArray = Array.from(lightBoxContainer.querySelectorAll(focusableSelector));
+    
+    arrowLeft.addEventListener('click', lightboxPreviousElt);
+    arrowRight.addEventListener('click', lightboxNextElt);
+    btnCloseLightBox.addEventListener('click', closeLightbox);
 }
-function previousElement() {
+
+function lightboxPreviousElt() {
     mediaLightbox.previousMedia();
     document.querySelector('.lightbox__content').innerHTML = lightBoxRenderHtml(mediaLightbox);
 }
-function nextElement() {
+function lightboxNextElt() {
     mediaLightbox.nextMedia();
     document.querySelector('.lightbox__content').innerHTML = lightBoxRenderHtml(mediaLightbox);
 }
@@ -206,19 +210,19 @@ function lightBoxRenderHtml(mediaLightbox) {
 
 // Close modal au click
 function closeLightbox() {
-    const btnCloseLightBox = document.querySelector('.lightbox__btnclose');
-    btnCloseLightBox.addEventListener('click', function () {
-        arrowLeft.removeEventListener('click', previousElement);
-        arrowRight.removeEventListener('click', nextElement);
-
-        onCloseLightbox(mainWrapper, lightBoxContainer);
-    });
+    arrowLeft.removeEventListener('click', lightboxPreviousElt);
+    arrowRight.removeEventListener('click', lightboxNextElt);
+    onCloseLightbox(mainWrapper, lightBoxContainer);
+    btnCloseLightBox.removeEventListener('click', closeLightbox);
 }
 
 /* ============================= gestion des evenements key ============================= */
 
 document.addEventListener('keydown', e => {
     let keyCode;
+    const focusInModal = function (e) {
+        e.preventDefault(); // on stop le comportement normal de la Tabulation
+    }
 
     if (e.key !== undefined) {
         keyCode = e.key;
@@ -227,62 +231,35 @@ document.addEventListener('keydown', e => {
         onCloseLightbox(mainWrapper, lightBoxContainer);
     }
     if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowLeft') {
-        previousElement();
+        lightboxPreviousElt();
     }
     if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowRight') {
-        nextElement();
+        lightboxNextElt();
+    }
+    if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Tab') {
+        focusInModal(e)
+        //console.log(focusableArray)
+
+        // récupérer l'index de l'élément qui est actuellement focus pour naviger dans la modale avec le focus
+        let indexFocus = focusableArray.findIndex(focus => focus === lightBoxContainer.querySelector(':focus'));
+        indexFocus++
+        if (indexFocus >= focusableArray.length) {
+            indexFocus = 0;
+        }
+        focusableArray[indexFocus].focus();
+        // console.log(indexFocus)
+        
+        // if (indexFocus = 1 && e.key === 'Enter') {
+        //     lightboxPreviousElt();
+        // }
+        // if (indexFocus = 2 && e.key === 'Enter') {
+        //     lightboxNextElt();
+        // }
     }
     if (photographModalContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Escape') {
         onCloseModal(mainWrapper, photographModalContainer);
     }
-    if (keyCode !== 'ArrowDown' && keyCode !== 'ArrowUp') return
-    e.preventDefault()
-    const option = e.target
-  
-    let selectedOption
-    if (keyCode === 'ArrowDown') selectedOption = option.nextElementSibling
-    if (keyCode === 'ArrowUp') selectedOption = option.previousElementSibling
-  
-    if (selectedOption) {
-      selectedOption.focus();
-      selectContainer.forEach(element => { console.log(element) })
-      selectedOption.setAttribute('tabindex', 0);
-    }
 });
-
-// function trapFocus(element) {
-//     let focusableEls = element.querySelectorAll('div:not([disabled]), a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
-//     let firstFocusableEl = focusableEls[0];
-//     console.log(firstFocusableEl)
-//     let lastFocusableEl = focusableEls[focusableEls.length - 1];
-//     console.log(lastFocusableEl)
-//     let KEYCODE_TAB = 9;
-
-//     if(element.getAttribute('aria-hidden') === false) {
-//         debugger
-//         document.addEventListener('keydown', function (e) {
-//             e.preventDefault();
-//             var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
-
-
-//             if (!isTabPressed) {
-//                 return;
-//             }
-
-//             if (e.shiftKey) /* shift + tab */ {    
-//                 if (document.activeElement === firstFocusableEl) {
-//                     lastFocusableEl.focus();
-//                     //e.preventDefault();
-//                 }
-//             } else /* tab */ {    
-//                 if (document.activeElement === lastFocusableEl) {
-//                     firstFocusableEl.focus();
-//                     //e.preventDefault();
-//                 }
-//             }
-//         });     
-//     }
-// }
 
 /* ============================= Gestion de la page ============================= */
 
@@ -319,5 +296,4 @@ const mainPhotographer = function () {
 }
 
 mainPhotographer();
-wrapperSelect();
 modalManagement(mainWrapper, photographModalContainer)

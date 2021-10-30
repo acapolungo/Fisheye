@@ -11,10 +11,10 @@
     <title>Fisheye</title>
 </head>
 
-<body>
+<body>  
     <header class="header">
         <div class="header__banner">
-            <a href="../index.html"><img src="../images/Fisheye Logo.svg" alt="Logo FishEye" role="img" tabindex="-1"></a>
+            <a href="../index.html" tabindex="-1"><img src="../images/Fisheye Logo.svg" alt="Logo FishEye" role="img"></a>
         </div>
     </header>
 
@@ -23,33 +23,22 @@
 
         <section class="selectcontainer">
             <p>Trier par</p>
-            <div class="select"
-            id="menubutton"
-            aria-expanded="false"
-            aria-haspopup="true"
-            aria-controls="listbox">    
-                <div class="select__trigger">
-                    <span>Popularité</span>
-                    <div class="select__arrow"></div>
-                </div>
-                <div class="select__options"
-                role="listbox"
-                aria-labelledby="menubutton">
-                    <span role="option" tabindex="0" class="select__opt selected" data-value="Likes">Popularité</span>
-                    <span role="option" tabindex="-1" class="select__opt" data-value="Date">Date</span>
-                    <span role="option" tabindex="-1" class="select__opt" data-value="Title">Titre</span>
-                </div>
+            <div class="select__cont">
+                <select class="select__style" aria-expanded="true" aria-hidden="false" tabindex="0">
+                  <option class="select__options" value="Likes">Popularité</option>
+                  <option class="select__options" value="Date">Date</option>
+                  <option class="select__options" value="Title">Titre</option>
+                </select>
             </div>
         </section>
 
         <section class="gallerycontainer"></section>
-        <section class="likescontainer">
-        </section>
+        <section class="likescontainer"></section>
 
         <section class="modalcontainer">
             <section class="modal">
                 <div class="modal__container">
-                    <span class="modal__close"></span>
+                    <button class="modal__close"></button>
                     <h2 class="modal__title"></h2>
                     <form id="contact" class="modal__registration">
                         <label class="modal__label" for="firstname">Prénom</label>
@@ -66,18 +55,15 @@
                 </div>
             </section>
         </section>
-    </main>
 
-    <section class="lightboxcontainer" aria-hidden="true" role="dialog" aria-describedby="lightboxModal">
-        <section class="lightbox">
-            <a class="lightbox__btnclose" aria-label="Fermer la fenetre" tab-index="0" ></a>
-            <div class="lightbox__arrow lightbox__arrow--left" aria-label="Image précédente" tab-index="0"></div>
-            <div class="lightbox__arrow lightbox__arrow--right" aria-label="Image Suivante" tab-index="0"></div>
-            <div class="lightbox__content" tab-index="0">
-                <!-- <div class="lightbox__img"><img src="/images/Mimi/Animals_Rainbow.jpg" alt=""></div>
-                <div class="lightbox__title">Title</div> -->
-            </div>
-        </section>
+        <section class="lightboxcontainer">
+            <section class="lightbox" role="dialog">
+                <button class="lightbox__btnclose" aria-label="Fermer la fenetre"></button>
+                <a class="lightbox__arrow lightbox__arrow--left"  tabindex="0" aria-label="Image précédente"></a>
+                <a class="lightbox__arrow lightbox__arrow--right" tabindex="0" aria-label="Image Suivante"></a>
+                <section class="lightbox__content"></section>
+            </section>
+    </main>
     </section>
 
     <script defer type="module" src="../js/photographersPage.js"></script>
