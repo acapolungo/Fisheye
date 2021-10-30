@@ -1,11 +1,11 @@
 
-import { Photograph } from '../js/photograph_class.js';
-import { MediaFactory, Photo, Video } from '../js/factory_class.js';
-import { LightBox } from '../js/lightbox_class.js';
-import { getData } from '../js/data.js';
-import { modalManagement } from '../js/modal_contact.js';
-import { getUrlParameter } from '../js/fonctions.js';
-import { onOpenLightBox, onCloseLightbox, onCloseModal } from '../js/app.js';
+import { Photograph } from './photograph_class.js';
+import { MediaFactory, Photo, Video } from './factory_class.js';
+import { LightBox } from './lightbox_class.js';
+import { getData } from './data.js';
+import { modalManagement } from './modal_contact.js';
+import { getUrlParameter } from './fonctions.js';
+import { onOpenLightBox, onCloseLightbox, onCloseModal } from './app.js';
 
 /* ============================= Récupérer le photographe lié à cet ID ============================= */
 
