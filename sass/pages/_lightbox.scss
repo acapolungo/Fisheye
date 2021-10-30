@@ -44,7 +44,7 @@
         padding: 3px;
         position: absolute;
         top: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateY(-50%);
         cursor: pointer;
         transition: all 0.1s ease-out;
         @include tablet {
@@ -62,19 +62,25 @@
             }
         }
         &--left {
-            left: rem(10);
+            left: rem(15);
             transform: rotate(135deg);
-            -webkit-transform: rotate(135deg);
+            -webkit-transform: translate(-50%, -50%) rotate(135deg);
+            &:hover {
+                transform: translate(-50%, -50%) rotate(135deg);
+            }
             @include tablet {
-                left: rem(40);
+                left: rem(55);
             }
         }
         &--right {
-            right: rem(10);
-            transform: rotate(-45deg);
-            -webkit-transform: rotate(-45deg);
+            right: rem(5);
+            transform: translate(-50%, -50%) rotate(-45deg);
+            -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+            &:hover {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
             @include tablet {
-                right: rem(40);
+                right: rem(30);
             }
         }
     }

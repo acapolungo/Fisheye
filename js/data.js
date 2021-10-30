@@ -1,7 +1,7 @@
 
 /* ============================= LIRE LE JSON EN LOCAL ============================= */
 
-export const getData = () => fetch('./data/FishEyeData.json')
+export const getData = () => fetch('data/FishEyeData.json')
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -11,6 +11,5 @@ export const getData = () => fetch('./data/FishEyeData.json')
         })
         .catch((err) => {
             console.log("Une erreur est survenue", err)
-            throw (err);
         }
         )

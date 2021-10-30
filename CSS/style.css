@@ -877,7 +877,7 @@ select:hover {
   padding: 3px;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   cursor: pointer;
   transition: all 0.1s ease-out;
 }
@@ -900,23 +900,29 @@ select:hover {
   }
 }
 .lightbox__arrow--left {
-  left: 0.625rem;
+  left: 0.9375rem;
   transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
+  -webkit-transform: translate(-50%, -50%) rotate(135deg);
+}
+.lightbox__arrow--left:hover {
+  transform: translate(-50%, -50%) rotate(135deg);
 }
 @media (min-width: 768px) {
   .lightbox__arrow--left {
-    left: 2.5rem;
+    left: 3.4375rem;
   }
 }
 .lightbox__arrow--right {
-  right: 0.625rem;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
+  right: 0.3125rem;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+}
+.lightbox__arrow--right:hover {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 @media (min-width: 768px) {
   .lightbox__arrow--right {
-    right: 2.5rem;
+    right: 1.875rem;
   }
 }
 .lightbox__content {
