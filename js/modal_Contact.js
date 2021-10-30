@@ -1,4 +1,4 @@
-import { onOpenModal, onCloseModal } from '../js/app.js';
+import { onOpenModal, onCloseModal } from './app.js';
 
 /* ============================= Gestion de la modale ============================= */
 
