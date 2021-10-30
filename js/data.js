@@ -1,7 +1,7 @@
 
 /* ============================= LIRE LE JSON EN LOCAL ============================= */
 
-export const getData = () => fetch('../data/FishEyeData.json')
+export const getData = () => fetch('./data/FishEyeData.json')
         .then(response => {
             if (response.ok) {
                 return response.json();

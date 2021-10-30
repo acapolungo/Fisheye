@@ -242,12 +242,14 @@ document.addEventListener('keydown', e => {
 
         // récupérer l'index de l'élément qui est actuellement focus pour naviger dans la modale avec le focus
         let indexFocus = focusableArray.findIndex(focus => focus === lightBoxContainer.querySelector(':focus'));
-        indexFocus++
+        console.log(indexFocus)
+        indexFocus++;
+        console.log(indexFocus) 
         if (indexFocus >= focusableArray.length) {
             indexFocus = 0;
         }
-        focusableArray[indexFocus].focus();
-        // console.log(indexFocus)
+        focusableArray[indexFocus].focus(); 
+        console.log(focusableArray[indexFocus])
         
         // if (indexFocus = 1 && e.key === 'Enter') {
         //     lightboxPreviousElt();
