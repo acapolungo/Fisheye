@@ -1,23 +1,3 @@
-import { onOpenModal, onCloseModal } from './app.js';
-
-/* ============================= Gestion de la modale ============================= */
-
-// on utilise la délégation d'évènement sur contact
-export function modalManagement(mainWrapper, photographModalContainer) {
-
-    document.addEventListener('click', e => {
-        if (e.target && e.target.className == 'contact__btn') {
-            //do something
-            onOpenModal(mainWrapper, photographModalContainer);
-        }
-    });
-    document.addEventListener('click', e => {
-        if (e.target && e.target.className == 'modal__close') {
-            //do something
-            onCloseModal(mainWrapper, photographModalContainer);
-        }
-    })  
-}
 
 //----------------------------- Gestion de formulaire -----------------------------//
 
