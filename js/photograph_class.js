@@ -36,7 +36,7 @@ export class Photograph {
 
     templateRender() {
         return `<section class="home__photographers" aria-label="photographer">
-                <a tabindex="0" href="photographer_page.html?id=${this.id}" class="home__profile"><img src="../images/PhotographersID/${this.portrait}" alt="${this.alt}" loading="lazy">
+                <a tabindex="0" href="photographer_page.html?id=${this.id}" class="home__profile"><img src="images/PhotographersID/${this.portrait}" alt="${this.alt}" loading="lazy">
                         <h2 class="home__name">${this.name}</h2></a>
                     <div class="home__info">
                         <p class="home__location">${this.locationConcat()}</p>
