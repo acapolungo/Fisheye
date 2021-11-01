@@ -119,9 +119,9 @@ function photographerLikesSum(selectedMedia) {
 
 function incrementTargetMedia(targetGalleryLike, selectedMedia) {
     let getMediaId = targetGalleryLike.closest("section").getAttribute("media-id");
-    //console.log(getMediaId)
     let currentMedia = selectedMedia.find(e => e.id == getMediaId);
     let heartIcon = targetGalleryLike.childNodes[3];
+    
     heartIcon.classList.toggle('gallery__heart--activ');
     heartIcon.classList.contains('gallery__heart--activ') ? currentMedia.likes++ : currentMedia.likes--;
     targetGalleryLike.childNodes[1].innerHTML = currentMedia.likes;
@@ -242,6 +242,8 @@ document.addEventListener('keydown', e => {
         e.preventDefault(); // on stop le comportement normal de la Tabulation
     }
 
+    console.log(e.target.classList.contains('lightbox__arrow--left'))
+
     if (e.key !== undefined) {
         keyCode = e.key;
     }
@@ -249,6 +251,15 @@ document.addEventListener('keydown', e => {
         onCloseLightbox(mainWrapper, lightBoxContainer);
     }
     if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowLeft') {
+        lightboxPreviousElt();
+    }
+    if (e.target.classList.contains('lightbox__arrow--left') && keyCode === 'Enter') {
+        lightboxPreviousElt();
+    }
+    if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowLeft') {
+        lightboxPreviousElt();
+    }
+    if (e.target.classList.contains('lightbox__arrow--right') && keyCode === 'Enter') {
         lightboxPreviousElt();
     }
     if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowRight') {
@@ -260,21 +271,12 @@ document.addEventListener('keydown', e => {
 
         // récupérer l'index de l'élément qui est actuellement focus pour naviger dans la modale avec le focus
         let indexFocus = focusableArray.findIndex(focus => focus === lightBoxContainer.querySelector(':focus'));
-        console.log(indexFocus)
         indexFocus++;
-        console.log(indexFocus) 
         if (indexFocus >= focusableArray.length) {
             indexFocus = 0;
         }
         focusableArray[indexFocus].focus(); 
-        console.log(focusableArray[indexFocus])
-        
-        // if (indexFocus = 1 && e.key === 'Enter') {
-        //     lightboxPreviousElt();
-        // }
-        // if (indexFocus = 2 && e.key === 'Enter') {
-        //     lightboxNextElt();
-        // }
+        //console.log(focusableArray[indexFocus])
     }
     if (photographModalContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Escape') {
         onCloseModal(mainWrapper, photographModalContainer);
@@ -307,7 +309,7 @@ const mainPhotographer = function () {
         mediaSelectedHtml(selectedMedia, selectedPhotographer);
         galleryManagement(galleryContainer, selectedMedia, photographLikesContainer, selectedPhotographer);
 
-        // on affuche les rendus
+        // on affiche les rendus
         photographContainer.innerHTML = photographerHtml;
         photographModalContainer.innerHTML = photographerModalHtml;
         photographLikesContainer.innerHTML = photographerLikesHtml;

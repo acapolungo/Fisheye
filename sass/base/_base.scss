@@ -33,3 +33,9 @@ a {
         transform: scale(.95, .95);
     }
 }
+
+select {
+    &:focus {
+        border: 3px solid black;
+    }
+}

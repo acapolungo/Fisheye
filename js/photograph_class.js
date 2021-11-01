@@ -39,9 +39,9 @@ export class Photograph {
                 <a tabindex="0" href="photographer_page.html?id=${this.id}" class="home__profile"><img src="images/PhotographersID/${this.portrait}" alt="${this.alt}" loading="lazy">
                         <h2 class="home__name">${this.name}</h2></a>
                     <div class="home__info">
-                        <p class="home__location">${this.locationConcat()}</p>
-                        <p class="home__citation">${this.tagline}</p>
-                        <p class="home__price">${this.price}&#8364/jours</p>
+                        <p class="home__location" tabindex="0">${this.locationConcat()}</p>
+                        <p class="home__citation" tabindex="0">${this.tagline}</p>
+                        <p class="home__price" tabindex="0" >${this.price}&#8364/jours</p>
                     </div>
                     <div class="home__category">${this.templateTags()}</div>
                 </section>`;
@@ -50,9 +50,9 @@ export class Photograph {
     photographerRender() {
         return ` <section class="contact" aria-label="photographerID">
                 <div class="contact__infos">
-                    <h1 class="contact__name" tabindex="1">${this.name}</h1>
-                    <div class="contact__location" tabindex="1">${this.locationConcat()}</div>
-                    <div class="contact__citation" tabindex="1">${this.tagline}</div>
+                    <h1 class="contact__name" tabindex="0">${this.name}</h1>
+                    <div class="contact__location" tabindex="0">${this.locationConcat()}</div>
+                    <div class="contact__citation" tabindex="0">${this.tagline}</div>
                     <div class="contact__category">${this.templateTags()}</div>
                 </div>
                 <button href="#" class="contact__btn">Contactez-moi</button>

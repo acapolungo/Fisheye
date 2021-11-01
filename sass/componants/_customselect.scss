@@ -63,7 +63,7 @@ select:hover {
         background-position: calc(100% - 15px) calc(1em + 6px), calc(100% - 23px) calc(1em + 6px), 100% 0;
         background-size: 8px 8px, 8px 8px, 2.5em 2.5em;
         background-repeat: no-repeat;
-        border-color: lighten($color-primary, 10%);
+        border: 2px solid black;
         outline: 0;
     }
     > option {

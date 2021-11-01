@@ -50,7 +50,7 @@ export class Video {
     
     render(photograph) {
         return (`
-            <section class="gallery" aria-label="video">
+            <section class="gallery" media-id=${this.id} aria-label="video">
                 <a href="#">
                     <div class="gallery__video"><video controls src="images/${photograph.folderName()}/${this.fileVideo}" alt="${this.title}" type="video/mp4" loading="lazy">
                     </video></div>
@@ -58,7 +58,7 @@ export class Video {
                 <div class="gallery__content">
                     <p class="gallery_txt">${this.title}</p>
                     <div class="gallery__like">
-                        <p class="gallery__count">${this.likes}</p>
+                        <button aria-label="like" class="gallery__count">${this.likes}</button>
                         <span class="gallery__heart"><i class="fas fa-heart"></i></span>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ export class Photo {
                 <div class="gallery__content">
                     <p class="gallery_txt">${this.title}</p>
                     <div class="gallery__like">
-                        <p class="gallery__count">${this.likes}</p>
+                        <button aria-label="like" class="gallery__count">${this.likes}</button>
                         <span class="gallery__heart"><i class="fas fa-heart"></i></span>
                     </div>
                 </div>

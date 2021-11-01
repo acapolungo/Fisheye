@@ -58,6 +58,10 @@
         cursor: pointer;
     }
     &__count {
+        color: $color-primary;
+        cursor: pointer;
+        border: none;
+        background: none;
         padding-right: rem(5);
         font-weight: 500;
         font-size: rem(14);

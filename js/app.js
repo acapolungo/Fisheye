@@ -4,7 +4,7 @@ export const onOpenLightBox = (mainWrapper, lightBoxContainer, btnCloseLightBox)
     lightBoxContainer.setAttribute('aria-modal', 'true');
     mainWrapper.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'hidden';
-    btnCloseLightBox.focus();
+    //btnCloseLightBox.focus();
 }
 
 export const onCloseLightbox = (mainWrapper, lightBoxContainer) => {

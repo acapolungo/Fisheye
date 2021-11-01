@@ -31,6 +31,10 @@ a a:hover {
   transform: scale(0.95, 0.95);
 }
 
+select:focus {
+  border: 3px solid black;
+}
+
 .header__tags,
 .home__tags {
   color: #901C1C;
@@ -85,7 +89,6 @@ a.header__mainlink {
 .contact__btn {
   color: #fff;
   border: none;
-  padding: 0.3125rem;
   font-size: 1.25rem;
   font-weight: 700;
   border-radius: 0.3125rem;
@@ -234,7 +237,7 @@ select:hover {
   background-position: calc(100% - 15px) calc(1em + 6px), calc(100% - 23px) calc(1em + 6px), 100% 0;
   background-size: 8px 8px, 8px 8px, 2.5em 2.5em;
   background-repeat: no-repeat;
-  border-color: #bb2424;
+  border: 2px solid black;
   outline: 0;
 }
 .select__style > option {
@@ -650,6 +653,10 @@ select:hover {
   cursor: pointer;
 }
 .gallery__count {
+  color: #901C1C;
+  cursor: pointer;
+  border: none;
+  background: none;
   padding-right: 0.3125rem;
   font-weight: 500;
   font-size: 0.875rem;
