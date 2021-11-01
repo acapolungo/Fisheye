@@ -1,4 +1,3 @@
-
 //----------------------------- Gestion de formulaire -----------------------------//
 
 // Constantes applicatives
