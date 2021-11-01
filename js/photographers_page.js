@@ -121,7 +121,7 @@ function incrementTargetMedia(targetGalleryLike, selectedMedia) {
     let getMediaId = targetGalleryLike.closest("section").getAttribute("media-id");
     let currentMedia = selectedMedia.find(e => e.id == getMediaId);
     let heartIcon = targetGalleryLike.childNodes[3];
-    
+
     heartIcon.classList.toggle('gallery__heart--activ');
     heartIcon.classList.contains('gallery__heart--activ') ? currentMedia.likes++ : currentMedia.likes--;
     targetGalleryLike.childNodes[1].innerHTML = currentMedia.likes;
@@ -187,6 +187,7 @@ function createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer, 
 
     // on va récupérer les éléments selectionnables de la lightbox (récupéré plus tard au Tab)
     focusableArray = Array.from(lightBoxContainer.querySelectorAll(focusableSelector));
+    console.log(focusableArray)
     
     arrowLeft.addEventListener('click', lightboxPreviousElt);
     arrowRight.addEventListener('click', lightboxNextElt);
@@ -242,8 +243,6 @@ document.addEventListener('keydown', e => {
         e.preventDefault(); // on stop le comportement normal de la Tabulation
     }
 
-    console.log(e.target.classList.contains('lightbox__arrow--left'))
-
     if (e.key !== undefined) {
         keyCode = e.key;
     }
@@ -256,18 +255,18 @@ document.addEventListener('keydown', e => {
     if (e.target.classList.contains('lightbox__arrow--left') && keyCode === 'Enter') {
         lightboxPreviousElt();
     }
-    if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowLeft') {
-        lightboxPreviousElt();
+    if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowRight') {
+        lightboxNextElt();
     }
     if (e.target.classList.contains('lightbox__arrow--right') && keyCode === 'Enter') {
-        lightboxPreviousElt();
+        lightboxNextElt();
     }
     if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowRight') {
         lightboxNextElt();
     }
     if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Tab') {
         focusInModal(e)
-        //console.log(focusableArray)
+        console.log(focusableArray.length)
 
         // récupérer l'index de l'élément qui est actuellement focus pour naviger dans la modale avec le focus
         let indexFocus = focusableArray.findIndex(focus => focus === lightBoxContainer.querySelector(':focus'));

@@ -69,15 +69,15 @@ export class LightBox {
 
     renderBoxPhoto(medium) {
         return (`
-            <div class="lightbox__img"><img src="images/${this.photograph.folderName()}/${medium.fileImage}" alt="${medium.title}"></div>
-            <div class="lightbox__title">${medium.title}</div>
+            <div class="lightbox__img" tab-index="-1"><img src="images/${this.photograph.folderName()}/${medium.fileImage}" alt="${medium.title}"></div>
+            <a class="lightbox__title">${medium.title}</a>
         `)
     }
 
     renderBoxVideo(medium) {
         return (`
-            <div class="lightbox__video"><video controls src="images/${this.photograph.folderName()}/${medium.fileVideo}" alt="${medium.title}" type="video/mp4"></div>
-            <div class="lightbox__title">${medium.title}</div>
+            <div class="lightbox__video" tab-index="-1"><video controls src="images/${this.photograph.folderName()}/${medium.fileVideo}" alt="${medium.title}" type="video/mp4"></div>
+            <a class="lightbox__title">${medium.title}</a>
         `)
     }
 }

@@ -961,6 +961,9 @@ select:hover {
   font-size: 1.25rem;
   font-weight: 400;
   color: #901C1C;
+  border: none;
+  background: none;
+  text-align: inherit;
 }
 @media (min-width: 768px) {
   .lightbox__title {

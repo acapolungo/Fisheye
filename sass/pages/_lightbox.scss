@@ -113,6 +113,9 @@
         font-size: rem(20);
         font-weight: 400;
         color: $color-primary;
+        border: none;
+        background: none;
+        text-align: inherit;
         @include tablet {
             font-size: rem(24);
         }
