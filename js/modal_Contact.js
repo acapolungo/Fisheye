@@ -1,3 +1,29 @@
+import { onOpenModal, onCloseModal } from './app.js';
+
+/* ============================= Gestion de la modale ============================= */
+
+const mainWrapper = document.querySelector('.mainpage');
+const photographModalContainer = document.querySelector('.modalcontainer');
+
+// on utilise la délégation d'évènement sur contact
+function modalManagement() {
+
+    document.addEventListener('click', e => {
+        if (e.target && e.target.className == 'contact__btn') {
+            //do something
+            onOpenModal(mainWrapper, photographModalContainer);
+        }
+    });
+    document.addEventListener('click', e => {
+        if (e.target && e.target.className == 'modal__close') {
+            //do something
+            onCloseModal(mainWrapper, photographModalContainer);
+        }
+    });
+}
+
+modalManagement(mainWrapper, photographModalContainer);
+
 //----------------------------- Gestion de formulaire -----------------------------//
 
 // Constantes applicatives

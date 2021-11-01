@@ -4,7 +4,7 @@ import { MediaFactory, Photo, Video } from './factory_class.js';
 import { LightBox } from './lightbox_class.js';
 import { getData } from './data.js';
 import { getUrlParameter } from './fonctions.js';
-import { onOpenLightBox, onCloseLightbox, onOpenModal, onCloseModal } from './app.js';
+import { onOpenLightBox, onCloseLightbox, onCloseModal} from './app.js';
 
 /* ============================= Récupérer le photographe lié à cet ID ============================= */
 
@@ -187,7 +187,7 @@ function createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer, 
 
     // on va récupérer les éléments selectionnables de la lightbox (récupéré plus tard au Tab)
     focusableArray = Array.from(lightBoxContainer.querySelectorAll(focusableSelector));
-    console.log(focusableArray)
+    //  console.log(focusableArray)
     
     arrowLeft.addEventListener('click', lightboxPreviousElt);
     arrowRight.addEventListener('click', lightboxNextElt);
@@ -214,25 +214,6 @@ function closeLightbox() {
     arrowRight.removeEventListener('click', lightboxNextElt);
     onCloseLightbox(mainWrapper, lightBoxContainer);
     btnCloseLightBox.removeEventListener('click', closeLightbox);
-}
-
-/* ============================= Gestion de la modale ============================= */
-
-// on utilise la délégation d'évènement sur contact
-function modalManagement(mainWrapper, photographModalContainer) {
-
-    document.addEventListener('click', e => {
-        if (e.target && e.target.className == 'contact__btn') {
-            //do something
-            onOpenModal(mainWrapper, photographModalContainer);
-        }
-    });
-    document.addEventListener('click', e => {
-        if (e.target && e.target.className == 'modal__close') {
-            //do something
-            onCloseModal(mainWrapper, photographModalContainer);
-        }
-    })  
 }
 
 /* ============================= gestion des evenements key ============================= */
@@ -317,4 +298,3 @@ const mainPhotographer = function () {
 }
 
 mainPhotographer();
-modalManagement(mainWrapper, photographModalContainer)

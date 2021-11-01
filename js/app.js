@@ -4,7 +4,6 @@ export const onOpenLightBox = (mainWrapper, lightBoxContainer, btnCloseLightBox)
     lightBoxContainer.setAttribute('aria-modal', 'true');
     mainWrapper.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'hidden';
-    //btnCloseLightBox.focus();
 }
 
 export const onCloseLightbox = (mainWrapper, lightBoxContainer) => {
@@ -18,7 +17,7 @@ export const onCloseLightbox = (mainWrapper, lightBoxContainer) => {
 export const onOpenModal = (mainWrapper, photographModalContainer) => {
     photographModalContainer.style.display = 'block';
     photographModalContainer.setAttribute('aria-hidden', 'false');
-    photographModalContainer.setAttribute('aria-modal', 'true');
+    photographModalContainer.removeAttribute('aria-modal');
     mainWrapper.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'hidden';
     document.querySelector('.modal__close').focus();
@@ -27,7 +26,7 @@ export const onOpenModal = (mainWrapper, photographModalContainer) => {
 export const onCloseModal = (mainWrapper, photographModalContainer) => {
     photographModalContainer.style.display = 'none';
     photographModalContainer.setAttribute('aria-hidden', 'true');
-    photographModalContainer.setAttribute('aria-modal', 'false');
+    photographModalContainer.removeAttribute('aria-modal');
     mainWrapper.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'visible';
 }
