@@ -51,7 +51,7 @@ export class Video {
     render(photograph) {
         return (`
             <section class="gallery" media-id=${this.id} aria-label="video">
-                <a href="#">
+                <a href="#" tab-index=-1>
                     <div class="gallery__video"><video controls src="images/${photograph.folderName()}/${this.fileVideo}" alt="${this.title}" type="video/mp4" loading="lazy">
                     </video></div>
                 </a>

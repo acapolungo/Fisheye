@@ -171,7 +171,7 @@ const lightBoxContainer = document.querySelector('.lightboxcontainer');
 const arrowLeft = document.querySelector('.lightbox__arrow--left');
 const arrowRight = document.querySelector('.lightbox__arrow--right');
 const btnCloseLightBox = document.querySelector('.lightbox__btnclose');
-const focusableSelector = 'button, a, input, textarea';
+const focusableSelector = 'button, a, input, textarea, video';
 let focusableArray = [];
 
 function createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer, e) {
@@ -241,9 +241,6 @@ document.addEventListener('keydown', e => {
     if (e.target.classList.contains('lightbox__arrow--right') && keyCode === 'Enter') {
         lightboxNextElt();
     }
-    if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'ArrowRight') {
-        lightboxNextElt();
-    }
     if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Tab') {
         focusInModal(e)
 
@@ -253,8 +250,8 @@ document.addEventListener('keydown', e => {
         if (indexFocus >= focusableArray.length) {
             indexFocus = 0;
         }
-        focusableArray[indexFocus].focus(); 
-        //console.log(focusableArray[indexFocus])
+        focusableArray[indexFocus].focus();
+        console.log(focusableArray[indexFocus])
     }
     if (photographModalContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Escape') {
         onCloseModal(mainWrapper, photographModalContainer);

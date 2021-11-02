@@ -46,6 +46,7 @@ export class LightBox {
         if (this.index !== undefined && this.arrayMedia !== undefined
             && this.index >= 0 && this.index < this.arrayMedia.length) {
             this.index++;
+            console.log(this.index)
             if (this.index >= this.arrayMedia.length) {
                 this.index = 0;
             }
