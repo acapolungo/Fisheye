@@ -4,6 +4,8 @@ import { onOpenModal, onCloseModal } from './app.js';
 
 const mainWrapper = document.querySelector('.mainpage');
 const photographModalContainer = document.querySelector('.modalcontainer');
+const focusableContactSelector = 'button, a, input, textarea';
+let focusableContactArray = [];
 
 // on utilise la délégation d'évènement sur contact
 function modalManagement() {
@@ -12,6 +14,9 @@ function modalManagement() {
         if (e.target && e.target.className == 'contact__btn') {
             //do something
             onOpenModal(mainWrapper, photographModalContainer);
+            // on va récupérer les éléments selectionnables de la lightbox (récupéré plus tard au Tab)
+            focusableContactArray = Array.from(photographModalContainer.querySelectorAll(focusableContactSelector));
+            console.log(focusableContactArray)
         }
     });
     document.addEventListener('click', e => {
@@ -21,6 +26,29 @@ function modalManagement() {
         }
     });
 }
+
+document.addEventListener('keydown', e => {
+    let keyCode;
+    const focusInModal = function (e) {
+        e.preventDefault(); // on stop le comportement normal de la Tabulation
+    }
+    if (e.key !== undefined) {
+        keyCode = e.key;
+    }
+    if (photographModalContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Tab') {
+        focusInModal(e)
+    
+        // récupérer l'index de l'élément qui est actuellement focus pour naviger dans la modale avec le focus
+        let indexFocus = focusableContactArray.findIndex(focus => focus === photographModalContainer.querySelector(':focus'));
+        console.log(indexFocus)
+        indexFocus++;
+        if (indexFocus >= focusableContactArray.length) {
+            indexFocus = 0;
+        }
+        focusableContactArray[indexFocus].focus(); 
+        //console.log(focusableArray[indexFocus])
+    }
+});
 
 modalManagement(mainWrapper, photographModalContainer);
 

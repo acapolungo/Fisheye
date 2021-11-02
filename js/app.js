@@ -20,7 +20,7 @@ export const onOpenModal = (mainWrapper, photographModalContainer) => {
     photographModalContainer.removeAttribute('aria-modal');
     mainWrapper.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'hidden';
-    document.querySelector('.modal__close').focus();
+    //document.querySelector('.modal__close').focus();
 }
 
 export const onCloseModal = (mainWrapper, photographModalContainer) => {

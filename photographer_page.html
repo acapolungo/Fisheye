@@ -42,13 +42,13 @@
                     <h2 class="modal__title"></h2>
                     <form id="contact" class="modal__registration">
                         <label class="modal__label" for="firstname">Prénom</label>
-                        <input class="modal__input" id="firstname" name="firstname" type="text" />
+                        <input class="modal__input" onfocus="this.value=''" id="firstname" name="firstname" type="text" />
                         <label class="modal__label" for="lastname">Nom</label>
-                        <input class="modal__input" id="lastname" name="name" type="text" />
+                        <input class="modal__input" onfocus="this.value=''" id="lastname" name="name" type="text" />
                         <label class="modal__label" for="email">Email</label>
-                        <input class="modal__input" id="email" name="email" type="text" class="registration_email" />
+                        <input class="modal__input" onfocus="this.value=''" id="email" name="email" type="text" class="registration_email" />
                         <label class="modal__label" for="feedback">Votre message</label>
-                        <textarea class="modal__textarea" id="message" name="feedback"
+                        <textarea class="modal__textarea" onfocus="this.value=''" id="message" name="feedback"
                             placeholder="Votre message..."></textarea>
                         <button class="modal__btn" type="submit">Envoyer</button>
                     </form>
@@ -61,13 +61,13 @@
                 <button class="lightbox__btnclose" aria-label="Fermer la fenetre"></button>
                 <a class="lightbox__arrow lightbox__arrow--left"  href="#" tabindex="0" aria-label="Image précédente"></a>
                 <a class="lightbox__arrow lightbox__arrow--right" href="#" tabindex="0" aria-label="Image Suivante"></a>
-                <section class="lightbox__content" tab-index="0"></section>
+                <div class="lightbox__content"></div>
             </section>
     </main>
     </section>
 
     <script type="module" src="js/photographers_page.js"></script>
-    <script type="module" src="js/modal_contact.js"></script>
+    <script type="module" src="js/modalcontact.js"></script>
 </body>
 
 </html>

@@ -187,7 +187,7 @@ function createLightBox(selectedMedia, getcurrentMediaId, selectedPhotographer, 
 
     // on va récupérer les éléments selectionnables de la lightbox (récupéré plus tard au Tab)
     focusableArray = Array.from(lightBoxContainer.querySelectorAll(focusableSelector));
-    //  console.log(focusableArray)
+    //console.log(focusableArray)
     
     arrowLeft.addEventListener('click', lightboxPreviousElt);
     arrowRight.addEventListener('click', lightboxNextElt);
@@ -223,7 +223,6 @@ document.addEventListener('keydown', e => {
     const focusInModal = function (e) {
         e.preventDefault(); // on stop le comportement normal de la Tabulation
     }
-
     if (e.key !== undefined) {
         keyCode = e.key;
     }
@@ -247,7 +246,6 @@ document.addEventListener('keydown', e => {
     }
     if (lightBoxContainer.getAttribute('aria-hidden') === 'false' && keyCode === 'Tab') {
         focusInModal(e)
-        console.log(focusableArray.length)
 
         // récupérer l'index de l'élément qui est actuellement focus pour naviger dans la modale avec le focus
         let indexFocus = focusableArray.findIndex(focus => focus === lightBoxContainer.querySelector(':focus'));
