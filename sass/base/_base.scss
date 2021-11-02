@@ -1,0 +1,41 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-size: $base-font-size;
+    background: $color-bg;
+    font-family: $font-fam;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+li {
+    list-style: none;
+} 
+
+a {
+    &:hover {
+        transform: scale(.95, .95);
+    }
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.1s ease;
+    // &:visited {
+    //     color: lighten($color-primary, 10%);
+    // }
+    a:hover {
+        color: #fff;
+        background-color: $color-primary;
+        transform: scale(.95, .95);
+    }
+}
+
+select {
+    &:focus {
+        border: 3px solid black;
+    }
+}

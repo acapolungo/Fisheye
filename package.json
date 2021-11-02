@@ -1,0 +1,19 @@
+{
+  "name": "fisheye",
+  "version": "1.0.0",
+  "description": "Plateforme de photographes",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acapolungo/adriencapolungo_6_30082021.git"
+  },
+  "author": "adrien capolungo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acapolungo/adriencapolungo_6_30082021/issues"
+  },
+  "homepage": "https://github.com/acapolungo/adriencapolungo_6_30082021#readme"
+}

@@ -1,0 +1,77 @@
+.selectcontainer {
+    width: 100%;
+    max-width: rem(1440);
+    min-width: rem(320);
+    padding: 0 rem(20);
+    margin: 0 auto;
+    position: relative;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    font-size: rem(18);
+    margin-top: rem(20);
+    @include tablet {
+        padding: 0 rem(50);
+    }
+    @include desktop {
+        padding: 0 rem(100);
+    }
+}
+
+.select__cont {
+    position: relative;
+    margin-left: rem(15);
+    width: rem(150);
+    height: rem(60);
+    border-radius: rem(5);
+    display: inline-block;
+}
+
+/* turn it off completely */
+select:active,
+select:hover {
+    outline: none;
+}
+
+/* make it red instead (with with same width and style) */
+select:active,
+select:hover {
+    outline-color: $color-primary;
+}
+
+.select__style {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    padding-left: rem(10);
+    font-size: rem(20);
+    background-color: $color-primary;
+    border-radius: rem(5);
+    box-shadow: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, white 50%),
+        linear-gradient(135deg, #fff 50%, transparent 50%);
+    background-position: calc(100% - 23px) calc(1em + 6px), calc(100% - 15px) calc(1em + 6px), 100% 0;
+    background-size: 8px 8px, 8px 8px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease-out;
+    &:focus {
+        background-image: linear-gradient(45deg, white 50%, transparent 50%),
+            linear-gradient(135deg, transparent 50%, white 50%);
+        background-position: calc(100% - 15px) calc(1em + 6px), calc(100% - 23px) calc(1em + 6px), 100% 0;
+        background-size: 8px 8px, 8px 8px, 2.5em 2.5em;
+        background-repeat: no-repeat;
+        border: 2px solid black;
+        outline: 0;
+    }
+    > option {
+        background-color: lighten($color-primary, 10%);
+        &:hover {
+            -webkit-box-shadow: 0 0 10px 100px $color-primary inset;
+            -moz-box-shadow: 0 0 10px 100px $color-primary inset;
+            box-shadow: 0 0 10px 100px $color-primary inset;
+        }
+    }
+}

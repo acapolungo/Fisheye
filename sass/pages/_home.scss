@@ -1,0 +1,69 @@
+.home {
+    width: 100%;
+    max-width: 1440px;
+    min-width: rem(320);
+    margin: 0 auto;
+    padding: rem(20);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: rem(30);
+    @include tablet {
+        padding: rem(80) rem(100);
+    }
+    @include desktop {
+        justify-content: space-evenly;
+    }
+    &__photographers {
+        width: rem(310);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    &__profile {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        img {
+        border-radius: 50%;
+        width: rem(200);
+        height: rem(200);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        object-fit: cover;
+        }  
+    }
+    &__name {
+        font-size: rem(36);
+        color: $color-secondary;
+        font-weight: 400;
+        margin-top: rem(20);
+        text-align: center;
+    }
+    &__info {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    &__location {
+        font-size: rem(13);
+        color: $color-primary;
+        padding-bottom: rem(3);
+    }
+    &__citation{
+        font-size: rem(10);
+        padding-bottom: rem(3);
+    }
+    &__price {
+        font-size: rem(9);
+        color: $color-secondary-grey;
+        padding-bottom: rem(6);
+    }
+    &__category {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
