@@ -101,7 +101,7 @@ a.header__mainlink {
   position: fixed;
   bottom: 1.875rem;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-85%, 0);
 }
 .contact__btn:hover, .contact__btn:focus {
   color: black;
@@ -567,10 +567,15 @@ select:hover {
   bottom: 0;
   right: 6.25rem;
   background-color: #dc7b66;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2.5rem;
+  display: none;
+}
+@media (min-width: 768px) {
+  .likescontainer {
+    display: flex;
+  }
 }
 
 .likes {
